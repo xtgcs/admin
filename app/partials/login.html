@@ -1,0 +1,39 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="text-center">
+        <img src="img/logo.png" style="height: 160px;margin-top: 60px">
+    </div>
+    <form name="frm" class="form-horizontal" role="form" ng-submit="login()">
+        <div class="dv-login">
+            <div class="form-group kid_login_space" id="error" style="text-align: center;color: red;font-size: 12px;">
+                 {{id}}
+            </div>
+            <div class="form-group kid_login_space" ng-class="{'has-error': frm.nick.$dirty && frm.nick.$invalid}">
+                <input name="mobile" class="form-control" placeholder="手机号" ng-model="credentials.mobile" required>
+
+                <!--<div class="input-group input-group-lg kid_center">-->
+                    <!--&lt;!&ndash;<span class="input-group-addon"><i class="fa fa-mobile fa-fw"></i></span>&ndash;&gt;-->
+                <!--</div>-->
+            </div>
+
+            <div class="form-group kid_login_space" ng-class="{'has-error': frm.password.$dirty && frm.password.$invalid}">
+                <input name="password" type="password" class="form-control" placeholder="密码" ng-model="credentials.password" required>
+
+                <!--<div class="input-group input-group-lg kid_center">-->
+                    <!--&lt;!&ndash;<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>&ndash;&gt;-->
+                <!--</div>-->
+            </div>
+            <div class="form-group kid_login_space">
+                <button class="btn btn-primary btn-block btn-lg" type="submit">
+                    <!--<i class="fa" ng-class="{'fa-sign-in': !loading, 'fa-spinner fa-spin': loading}"></i>--> 登陆
+                </button>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <button class="btn btn-primary btn-block btn-lg" type="submit">
+                    <i class="fa" ng-class="{'fa-sign-in': !loading, 'fa-spinner fa-spin': loading}"></i> 登录
+                </button>
+            </div>
+        </div>-->
+    </form>
+</div>

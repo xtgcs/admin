@@ -1,0 +1,72 @@
+<style>
+    body {
+        font: normal 100% Helvetica, Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    small {
+        font-size: 0.875em;
+    }
+
+    img {
+        width: 100%;
+        max-width: 100%;
+    }
+</style>
+
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div>
+            <img ng-src="{{live.topImage.url}}"/>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">{{live.title}}</h3>
+        </div>
+        <div ng-if="live.desc">
+            <div ng-bind-html="live.desc"></div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div ng-repeat="o in live.resource">
+                    <div>
+                        <img ng-if="o.tp == 0" ng-src="{{o.url}}"/>
+                        <small><span class="help-block" ng-if="o.desc">{{o.desc}}</span></small>
+
+                        <div ng-if="o.tp == 1">
+                            <video width="100%" type="video/mp4"
+                                   src="{{o.url | trusted}}"
+                                   poster="{{o.poster}}"
+                                   controls="controls">
+                                您的浏览器不支持 video 标签。
+                            </video>
+                        </div>
+
+                        <div ng-if="o.tp == 3">
+                            <audio width="100%" type="audio/mp3"
+                                   src="{{o.url | trusted}}"
+                                   controls="controls">
+                                您的浏览器不支持 audio 标签。
+                            </audio>
+                        </div>
+
+                        <div ng-if="o.tp==2">
+                            <div ng-bind-html="o.txt"></div>
+                        </div>
+                        <br/>
+                    </div>
+
+                    <br/>
+                </div>
+
+                <div ng-bind-html="live.desc"></div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

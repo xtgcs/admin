@@ -1,0 +1,56 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">图片上传</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="col-md-12">
+                <span class="btn btn-default" ng-disabled="uploading" style="position:relative;">
+                    <i class="fa" ng-class="{'fa-plus': !uploading, 'fa-spinner fa-spin': uploading}"></i>
+                    <span>添加图片</span>
+                    <input type="file" name="添加图片" nv-file-select="" uploader="uploader"
+                           style="position:absolute;z-index:10;cursor: pointer;right:0;top:0;width:100%;height:100%;opacity:0;-moz-opacity:0;-webkit-opacity:0;filter:alpha(opacity=0);"
+                           accept="image/jpeg,image/x-png,image/gif"/>
+                </span>
+                <span class="btn btn-default" ng-disabled="!resource.url" style="position:relative;" ng-click="editImage()">
+                    编辑图片
+                </span>
+            </div>
+
+            <HR style="border:1px" width="100%" SIZE=1>
+
+            <div ng-show="!meituShowing" class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="padding-top: 20px; padding-left: 0px; padding-right: 0px;">
+                    <div style="width: 100%; min-height: 300px; overflow: hidden; border: 1px solid #999999;">
+                        <p ng-show="!resource.url" style="line-height: 300px; width: 100%; height: 100%; text-align: center;">
+                            请点击“添加图片”完成图片上传，当前仅支持jpg,png和gif图片格式
+                        </p>
+                        <div style="width: 100%">
+                            <img id="selected-image" style="width: 100%;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+            <div ng-show="meituShowing" class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="padding-top: 20px; padding-left: 0px; padding-right: 0px; height: 300px;">
+                    <iframe id="meitu-frame" src="partials/meitu.html" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button ng-disabled="meituShowing" class="btn btn-primary" ng-click="ok()">
+                确定
+            </button>
+            <button class="btn btn-danger" ng-click="cancel()">
+                取消
+            </button>
+        </div>
+    </div>
+</div>

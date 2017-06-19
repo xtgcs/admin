@@ -1,0 +1,56 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">审核</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.txt.$dirty && form.txt.$invalid, 'has-success': form.txt.$dirty && form.txt.$valid}">
+                    <label for="txt" class="col-sm-3 control-label">审核意见</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="txt" name="txt" placeholder="审核意见"
+                               ng-model="activity.auditInfo" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">审核结果</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: -6px">
+                            <div class="radio">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="activity.statusd" value=1>通过
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="activity.statusd" value=2>失败
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6">
+                        <button class="btn btn-primary" type="submit" ng-click="audit()">
+                            <i class="fa" ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                            保存
+                        </button>
+
+                        <button class="btn btn-primary" type="button" ng-click="ok()">
+                            <i class="fa fa-reply"></i>
+                            返回
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

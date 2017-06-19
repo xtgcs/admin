@@ -1,0 +1,27 @@
+<div>
+    <table class="table list">
+        <tr>
+            <td>
+                <div ng-if="resource.tp == 0" style="margin-top: 2px;position:relative;">
+                    <div>
+                        <img pop-img style="width: 67px; height: 67px;" ng-src="{{resource.url}}">
+                        <img style="width:420px;position:absolute;left:-440px;top:0;z-index:1000;display:none" ng-src="{{resource.url}}">
+                    </div>
+                    <span class="label label-danger" style="position:absolute;left:-9px;top:-12px;">图片</span>
+                </div>
+                <div ng-if="resource.tp == 1" style="margin-top: 2px;position:relative;">
+                    <img style="width: 67px; height: 67px;" ng-src="{{resource.poster}}" popover="{{resource.name}}" popover-trigger="mouseenter">
+                    <span class="label label-danger" style="position:absolute;left:-9px;top:-12px;">视频</span>
+                </div>
+            </td>
+
+            <!--<td width="10%">-->
+            <!--设为预览图-->
+            <!--<input data-no-drag type="checkbox" ng-checked="ids.indexOf(r.id) > -1" ng-click="toggleSelection(r.id)">-->
+            <!--</td>-->
+            <td style="width:43px;" data-no-drag>
+                <a data-no-drag class="btn btn-danger btn-xs" ng-click="removeCoverImg(resource)" style="margin-top: 22px;">移除</a>
+            </td>
+        </tr>
+    </table>
+</div>

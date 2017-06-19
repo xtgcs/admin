@@ -1,0 +1,50 @@
+<div class="col-md-12">
+
+    <div tabset>
+        <div tab heading="日" style="margin-bottom: 1px;"  active="financestatlist.show" select="loadDailyData()">
+            <div style="">
+
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th style="width:60px;">序号</th>
+                        <th class="text-center">日期</th>
+                        <th style="width:120px;">总金额(元)</th>
+                    </tr>
+                    <tr ng-repeat="o in data.data">
+                        <td>
+                            <div style="margin-top: 6px">
+                                {{$index + 1}}
+                            </div>
+                        </td>
+                        <td class="text-eft">
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;"
+                                  class="">{{o.dt | date:"yyyy-MM-dd"}}</span>
+                        </td>
+                        <td class="text-eft">
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.amount}}" popover-trigger="mouseenter"
+                                  class="">{{o.amount | number:2}}</span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center">
+                    <pagination
+                            total-items="data.total" ng-model="grid.page"
+                            items-per-page="data.size" class="pagination-sm" boundary-links="true"
+                            max-size="12" rotate="true"
+                            previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+                    </pagination>
+                </div>
+            </div>
+        </div>
+
+        <div tab heading="周" active="financestatlistweekly.show" ng-show="true" select="loadWeeklyData()">
+            <div ng-include="'partials/finance/finance_weekly_stat_list.html'"></div>
+        </div>
+
+        <div tab heading="月" active="financestatlistmonthly.show" ng-show="true" select="loadMonthlyData()">
+            <div ng-include="'partials/finance/finance_monthly_stat_list.html'"></div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">推荐作者列表</h3>
+        </div>
+
+        <form class="navbar-form navbar-left" role="search" ng-submit="search()" style="width: 100%;padding-left: 3px;">
+            <!--<a href="javascript:;" ng-click="selectAuthor()" class="btn btn-primary glyphicon glyphicon-plus" role="button" style="font-weight: 600;height: 36px;">添加推荐作者</a>-->
+            <div class="myBtn" ng-click="selectAuthor()" style="width: 142px;margin-left: 7px;">
+                <i class="plus-add"></i>
+                <span>添加推荐作者</span>
+            </div>
+            <div class="form-group">
+                &nbsp;&nbsp;&nbsp;&nbsp;总数：{{data.length || 0}}
+            </div>
+        </form>
+        <HR style="border:1px" width="100%" SIZE=1>
+
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>序号</th>
+                <th>头像</th>
+                <th style="width:150px;">昵称</th>
+                <th>建立时间</th>
+                <th width="100px">操作</th>
+            </tr>
+            <tr ng-repeat="u in data" style="height:60px;">
+                <td><div>{{$index + 1}}</div></td>
+                <td>
+                    <div ng-if="u.icon">
+                        <img ng-src="{{u.icon}}?imageView2/0/w/50/h/50" alt="" style="width:50px;height:50px;"/>
+                    </div>
+                </td>
+                <td><span style="border:none;width:150px;overflow: hidden;text-overflow:ellipsis;" popover="{{u.nick}}" popover-trigger="mouseenter"
+                          class="">{{u.nick}}</span></td>
+                <td><div>{{u.ct | date:"yyyy-MM-dd"}}</div></td>
+                <td width="300px">
+                    <a href="#" ng-click="cancelRecommend($index)">取消推荐</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

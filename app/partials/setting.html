@@ -1,0 +1,112 @@
+<div class="col-md-11 setting" style="padding-left: 30px;">
+    <div style="height: 50px; line-height: 50px;border-bottom: 1px #DDDDDD solid;margin-bottom: 30px;">
+        <a ng-class="{'actived':!tabId}"
+           style="float: left;margin-left: 20px;color: #bfbfbf;height: 50px;text-decoration: none;" id="user_info"
+           ng-click="tab(0)">个人信息</a>
+        <a ng-class="{'actived':tabId}"
+           style="float: left;margin-left: 50px;color: #bfbfbf;height: 50px;text-decoration: none;" id="pass_edit"
+           ng-click="tab(1)">修改密码</a>
+    </div>
+    <div class="form-horizontal" ng-show="!tabId" id="user_info_content">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" style="text-align:left;">头像</label>
+
+            <div class="col-sm-10" style="margin-left:-30px;">
+                <div style="margin-top: 6px">
+                    <div ng-if="me.icon" style="padding-bottom:5px;">
+                        <img style="width:88px;height:88px;" ng-src="{{me.icon}}?imageView2/0/w/50/h/50"/><br/>
+                    </div>
+                    <input type="file" nv-file-select uploader="iconUploader" style="float: left"
+                           accept="image/jpeg,image/x-png"/>
+                    <a href="" class="btn btn-default"
+                       style="border: 1px solid !important;height: 25px;padding-top: 2px;" ng-click="upload()"
+                       ng-disabled="uploading || !iconUploader.queue.length">上传</a>
+                    <span style="color:#DDDDDD">头像将显示在手机客户端,图片格式必须为：jpg或png</span>
+                    <!--<div style="float: left"></div>-->
+                </div>
+            </div>
+            <!--<div class="col-sm-5" style="margin-top: 6px;margin-left: -90px">-->
+                <!--<span style="color:#DDDDDD">头像将显示在手机客户端,图片格式必须为：jpg或png</span>-->
+            <!--</div>-->
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': createUserForm.nick.$dirty && createUserForm.nick.$invalid, 'has-success': createUserForm.nick.$dirty && createUserForm.nick.$valid}">
+            <label class="col-sm-2 control-label" style="text-align:left;">姓名</label>
+
+            <div class="col-sm-7" style="margin-left:-30px;">
+                <div style="margin-top: 6px">
+                    <a href="" editable-text="me.nick" onbeforesave="save('nick', $data)">{{ me.nick || '点击编辑' }}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': createUserForm.mobile.$dirty && createUserForm.mobile.$invalid, 'has-success': createUserForm.mobile.$dirty && createUserForm.mobile.$valid}">
+            <label class="col-sm-2 control-label" style="text-align:left;">手机号</label>
+
+            <div class="col-sm-7" style="margin-left:-30px;">
+                <div style="margin-top: 6px">
+                    <a style="width:96px;height:44px;" href="" editable-text="me.mobile" onbeforesave="save('mobile', $data)">{{ me.mobile || '点击编辑'
+                        }}</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-horizontal" ng-show="tabId" id="pass_edit_content">
+
+        <form name="form" class="form-horizontal" role="form"  novalidate>
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.oldPassword.$dirty && form.oldPassword.$invalid, 'has-success': form.oldPassword.$dirty && form.oldPassword.$valid}">
+                <label for="passwd" class="col-sm-2 control-label" style="text-align:left;">原始密码</label>
+
+                <div class="col-sm-5" style="margin-left:-30px;">
+                    <input tooltip="英文字符或数字"
+                           type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="原始密码"
+                           ng-model="passwd.oldPassword" required ng-pattern="/^\w+$/">
+                </div>
+            </div>
+
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.passwd.$dirty && form.passwd.$invalid, 'has-success': form.passwd.$dirty && form.passwd.$valid}">
+                <label for="passwd" class="col-sm-2 control-label" style="text-align:left;">新密码</label>
+
+                <div class="col-sm-5" style="margin-left:-30px;">
+                    <input tooltip="英文字符或数字"
+                           type="password" class="form-control" id="passwd" name="passwd" placeholder="新密码"
+                           ng-model="passwd.newPassword" required ng-pattern="/^\w+$/">
+                </div>
+            </div>
+
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.confirmPassword.$dirty && form.confirmPassword.$invalid, 'has-success': form.confirmPassword.$dirty && form.confirmPassword.$valid}">
+                <label for="confirmPassword" class="col-sm-2 control-label" style="text-align:left;">确认新密码</label>
+
+                <div class="col-sm-5" style="margin-left:-30px;">
+                    <input tooltip="英文字符或数字"
+                           type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                           placeholder="确认密码"
+                           ng-model="passwd.confirmPassword" required ng-pattern="/^\w+$/">
+                </div>
+                <div ng-show="(form.passwd.$dirty || form.passwd2.$dirty) && passwd.newPassword != passwd.confirmPassword">
+                    <p class="text-danger">两次输入必须一致</p>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6">
+            <button class="btn btn-primary" type="submit" style="margin-left: -30px;margin-top:26px;" ng-click="changePasswd()">
+                <!--<i class="fa" ng-class="{'fa-check': !changing, 'fa-spinner fa-spin': changing}"></i>-->
+                确认修改
+            </button>
+        </div>
+    </div>
+</div>

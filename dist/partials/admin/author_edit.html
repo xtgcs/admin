@@ -1,0 +1,182 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改作者资料</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">头像</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <div ng-if="user.icon" style="padding-bottom:5px;">
+                                <img ng-src="{{user.icon}}?imageView2/0/w/50/h/50"/><br/>
+                            </div>
+                            <input type="file" nv-file-select uploader="iconUploader" accept="image/jpeg,image/x-png"/>
+                            <a href="" class="pull-right btn btn-primary btn-xs" ng-click="upload()"
+                               ng-disabled="uploading || !iconUploader.queue.length">上传</a>
+                            <small><span class="help-block">头像将显示在手机客户端</span></small>
+                            <small><span class="help-block" style="color:#A94442">图片格式必须为：jpg或png</span></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.nick.$dirty && createUserForm.nick.$invalid, 'has-success': createUserForm.nick.$dirty && createUserForm.nick.$valid}">
+                    <label class="col-sm-4 control-label">姓名</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.nick" onbeforesave="save('nick', $data)">{{ user.nick || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.authorTp.$dirty && createUserForm.authorTp.$invalid, 'has-success': createUserForm.authorTp.$dirty && createUserForm.authorTp.$valid}">
+                    <label class="col-sm-4 control-label">作者类型</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="#" editable-select="user.authorTpStr" e-ng-options="s.id as s.name for s in authorTypes" onbeforesave="save('authorTp', $data)">
+                                {{ showAuthorType() }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">分类</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="#" editable-select="user.category.id" e-ng-options="s.id as s.name for s in category" onbeforesave="save('category', $data)">
+                                {{ showAuthorCategory() }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-4 control-label">分类</label>-->
+
+                    <!--<div class="col-sm-3">-->
+                        <!--<div style="margin-top: -6px">-->
+                            <!--<select class="form-control" required ng-model="user.category" ng-options="s.id as s.name for s in category">-->
+                                <!--<option value="">请选择类型</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.career.$dirty && createUserForm.career.$invalid, 'has-success': createUserForm.career.$dirty && createUserForm.career.$valid}">
+                    <label class="col-sm-4 control-label">职业</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.career" onbeforesave="save('career', $data)">{{ user.career || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">签名</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.signature" onbeforesave="save('signature', $data)">{{ user.signature || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">手机号</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.mobile" onbeforesave="save('mobile', $data)">{{ user.mobile || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">简介</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.desc" onbeforesave="save('desc', $data)">{{ user.desc || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">微信公众号</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.weixin" onbeforesave="save('weixin', $data)">{{ user.weixin || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">微博账号</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.weibo" onbeforesave="save('weibo', $data)">{{ user.weibo || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">收款银行</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.bank" onbeforesave="save('bank', $data)">{{ user.bank || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">开户行</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.bankBranch" onbeforesave="save('bankBranch', $data)">{{ user.bankBranch || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">收款人</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.bankAccount" onbeforesave="save('bankAccount', $data)">{{ user.bankAccount || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">银行卡号</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="user.bankCard" onbeforesave="save('bankCard', $data)">{{ user.bankCard || '点击编辑' }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

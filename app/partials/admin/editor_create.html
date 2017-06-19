@@ -1,0 +1,82 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">新增编辑</h3>
+        </div>
+        <div class="panel-body">
+            <form name="createUserForm" class="form-horizontal" role="form" ng-submit="save()" novalidate>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">头像</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <input type="file" nv-file-select uploader="iconUploader" accept="image/jpeg,image/x-png"/>
+                            <small><span class="help-block">头像将显示在手机客户端</span></small>
+                            <small><span class="help-block" style="color:#A94442">图片格式必须为：jpg或png</span></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.nick.$dirty && createUserForm.nick.$invalid, 'has-success': createUserForm.nick.$dirty && createUserForm.nick.$valid}">
+                    <label for="nick" class="col-sm-4 control-label">姓名</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="nick" name="nick" placeholder="昵称"
+                               ng-model="user.nick" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.mobile.$dirty && createUserForm.mobile.$invalid, 'has-success': createUserForm.mobile.$dirty && createUserForm.mobile.$valid}">
+                    <label for="mobile" class="col-sm-4 control-label">手机号</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="11位手机号码" type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号"
+                               ng-model="user.mobile" required ng-pattern="/^((13|15|17|18)[0-9]{9})|(145)[0-9]{8}$/">
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.password.$dirty && createUserForm.password.$invalid, 'has-success': createUserForm.password.$dirty && createUserForm.password.$valid}">
+                    <label for="password" class="col-sm-4 control-label">密码</label>
+
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="密码"
+                               ng-model="user.password" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.confirmPassword.$dirty && createUserForm.confirmPassword.$invalid,
+                     'has-success': createUserForm.confirmPassword.$dirty && createUserForm.confirmPassword.$valid}">
+                    <label for="confirmPassword" class="col-sm-4 control-label">确认密码</label>
+
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="确认密码"
+                               ng-model="user.confirmPassword" required>
+                    </div>
+                    <div style="margin-top: 8px" ng-show="(createUserForm.password.$dirty || createUserForm.confirmPassword.$dirty) && user.password != user.confirmPassword">
+                        <p class="text-danger">两次输入必须一致</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-5">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                            保存
+                        </button>
+                        <button class="btn btn-warning" type="button" ng-click="cancel()">
+                            <i class="fa " ng-class="{'fa-check': !saving, 'fa-spinner fa-spin': saving}"></i>
+                            取消
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">敏感活动评论列表</h3>
+        </div>
+
+        <form class="navbar-form navbar-left" role="search" ng-submit="search()" style="width: 100%;padding-left: 0px;">
+            <div class="form-group" style="float: right;margin-right: 70px;">
+                <select class="form-control" ng-model="grid.tp">
+                    <option value="">全部敏感评论</option>
+                    <option value="0">敏感词评论</option>
+                    <option value="1">被举报评论</option>
+                </select>
+            </div>
+            <div class="form-group" style="float: right;margin-right: 10px;">
+                <input type="text" placeholder="搜索活动" class="form-control" ng-model="grid.txt">
+            </div>
+            <button type="submit" class="btn mySearch"  style="position: absolute;right: 20px;width:70px;border: 1px #492824 solid !important;background-color: #FFFFFF">搜索</button>
+        </form>
+        <HR style="border:1" width="100%" SIZE=1>
+
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th class="th_border-bottom">序号</th>
+                <th class="th_border-bottom">评论内容</th>
+                <th class="th_border-bottom">评论人</th>
+                <th class="th_border-bottom">被回复人</th>
+                <th class="th_border-bottom">活动名</th>
+                <th class="th_border-bottom">评论时间</th>
+                <th class="th_border-bottom">类型</th>
+                <th class="th_border-bottom" width="100px">操作</th>
+            </tr>
+            <tr ng-repeat="o in data.data">
+                <td class="border-bottom">{{$index + 1}}</td>
+                <td class="border-bottom">
+                    <div style="position: relative; display: inline-block;">
+                        <img ng-show="o.image.length > 0" pop-img style="width: 40px; height: 40px;" ng-src="{{o.image.length > 0 ? o.image[0].url + '?imageView2/0/w/40' : ''}}">
+                        <img ng-show="o.image.length > 0" style="width:420px;position:absolute;left:-440px;top:0;z-index:1000;display:none" ng-src="{{o.image.length > 0 ? o.image[0].url + '?imageView2/0/w/420' : ''}}">
+                    </div>
+                    <span style="border:none;width:150px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.text}}" popover-trigger="mouseenter" class="btn btn-default">{{o.text}}</span>
+                </td>
+                <td class="border-bottom">{{o.user.nick}}</td>
+                <td class="border-bottom">{{o.replyUser.nick}}</td>
+                <td class="border-bottom">{{o.activity.name}}</td>
+                <td class="border-bottom">{{o.ct | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td class="border-bottom">{{o.status==1?"敏感词":"被举报"}}</td>
+                <td width="180px" class="border-bottom">
+                    <a href="#" ng-click="view($index)">查看活动</a>
+                    <a href="#" ng-click="audit($index)">审核</a>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <pagination
+                    total-items="data.total" ng-model="grid.page"
+                    items-per-page="data.size" class="pagination-sm" boundary-links="true"
+                    max-size="12" rotate="true"
+                    previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+            </pagination>
+        </div>
+    </div>
+</div>
+</body>
+</html>

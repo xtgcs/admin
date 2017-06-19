@@ -1,0 +1,43 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改密码</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <form name="pwdForm" class="form-horizontal" role="form" novalidate>
+                    <div class="form-group"
+                         ng-class="{'has-error' : pwdForm.passwd.$dirty && pwdForm.passwd.$invalid, 'has-success' : pwdForm.passwd.$dirty && pwdForm.passwd.$valid}">
+                        <label for="password" class="col-sm-3 control-label">新密码</label>
+
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="新密码"
+                                   ng-model="passwd.password" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group"
+                         ng-class="{'has-error' : pwdForm.passwd2.$dirty && pwdForm.passwd2.$invalid, 'has-success' : pwdForm.passwd2.$dirty && pwdForm.passwd2.$valid}">
+                        <label for="confirmPassword" class="col-sm-3 control-label">确认新密码</label>
+
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="确认密码"
+                                   ng-model="passwd.confirmPassword" required>
+                        </div>
+                        <div ng-show="(pwdForm.password.$dirty || pwdForm.confirmPassword.$dirty) && passwd.password != passwd.confirmPassword">
+                            <p class="text-danger">两次输入必须一致</p>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="save()">保存</button>
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<style>
+    body {
+        font: normal 100% Helvetica, Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    small {
+        font-size: 0.875em;
+    }
+
+    img {
+        width: 100%;
+        max-width: 100%;
+    }
+</style>
+
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div>
+            <img ng-src="{{topic.topImage.url}}"/>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">{{topic.title}}</h3>
+        </div>
+        <div ng-if="topic.desc">
+            <div ng-bind-html="topic.desc"></div>
+        </div>
+        <div ng-if="topic.text">
+            <div ng-bind-html="topic.text"></div>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <p ng-repeat="article in topic.articles">
+                    {{$index + 1}}、{{article.title}}
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

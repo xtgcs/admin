@@ -1,0 +1,90 @@
+<div style="">
+
+    <div class="panel-body">
+        <div style="">
+
+            <div class="btn-group" style="width: 100%;margin-top: -5px;margin-bottom: 20px;" >
+                <div class="btn-group select" dropdown is-open="createMenuStatus.isopen">
+                    <button type="button" class="btn btn-primary dropdown-toggle  selectBtn" ng-disabled="disabled"  style="border:none;">
+                        {{name}}<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" >
+                        <li ng-repeat="type in recommendedType">
+                            <a href="" ng-click="classify(type.id)">{{type.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <button ng-repeat="btn in addType" type="button" class="btn btn-primary" ng-click="add($index)" style="margin-left: 10px;" ng-if="item[$index]">
+                    {{btn.name}}
+                </button>
+                <!--<form class="navbar-form navbar-right" role="search" ng-submit="search()" style="width: 100%;margin-top: -34px;padding-left: 0px;">-->
+
+                <!--<div class="form-group" style="float: right;">-->
+                <!--<input type="text" class="form-control" ng-model="grid.name" placeholder="请输入要搜索的关键字">-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<button type="submit" class="btn mySearch" style="position: absolute;right: 15px;width:70px;border: 1px #492824 solid !important;background-color: #FFFFFF">搜索</button>&ndash;&gt;-->
+                <!--</form>-->
+            </div>
+
+            <form name="form" class="form-horizontal" role="form" novalidate>
+                <div>
+                    <div class="sortable-row" >
+                        <div>
+                            <div class="table"  sortable="sortableOptions" ng-model="list">
+                                <div ng-repeat="i in list" sortable-item style="border: 0px !important;">
+                                            <ul class="line_list editor" sortable-item-handle >
+                                                <li class="text-center one">
+                                                    {{$index + 1}}
+                                                </li>
+                                                <li class="text-eft two" style="width: 200px" ng-model="coverImg">
+                                                    <img class="headImg" ng-src="{{i.image.url}}" alt="" style="width: 100%;height: 100px">
+                                                    <!--<span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.article.title}}" popover-trigger="mouseenter" class="">{{o.article.title}}</span>-->
+                                                </li>
+                                                <li class="text-center three">
+                                                    <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{i.title}}" popover-trigger="mouseenter"
+                                                          class="">{{i.title}}</span>
+                                                </li>
+
+                                                <li class="text-center four">
+                                                    <ul class="operation">
+                                                        <li data-no-drag>
+                                                                <span ng-click="removeBanner($index)">删除</span>
+                                                        </li>
+                                                        <li data-no-drag>
+                                                                <span ng-click="selectTopImage($index)">重传图片</span>
+                                                        </li>
+                                                        <li data-no-drag>
+                                                                <span ng-click="reviseTitle($index)">修改标题</span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="text-center">-->
+                    <!--<pagination-->
+                            <!--total-items="data.total" ng-model="grid.page"-->
+                            <!--items-per-page="data.size" class="pagination-sm" boundary-links="true"-->
+                            <!--max-size="8" rotate="true"-->
+                            <!--previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">-->
+                    <!--</pagination>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="col-md-12" style="padding: 10px;text-align: center">
+                        <button class="btn btn-primary" type="button" ng-click="save()">
+                            <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                            保存
+                        </button>
+                        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,108 @@
+<div class="col-md-12">
+
+    <div tabset>
+        <div tab active="livelist.show" select="clearData()" disabled="true">
+            <div style="">
+
+                <form class="navbar-form navbar-left" role="search" ng-submit="search()" style="width: 100%;margin-top: -10px;padding-left: 0px;">
+
+                    <!--<a ng-click="create()" class="btn btn-primary glyphicon glyphicon-plus top-btn" style="font-weight: 600;height: 36px">&nbsp;发布连线</a>-->
+                    <div class="myBtn" ng-click="create()">
+                        <i class="plus-add"></i>
+                        <span>发布连线</span>
+                    </div>
+                    <div class="form-group" style="float: right;margin-right: 70px">
+                        <select class="form-control" ng-model="grid.status" ng-options="s.id as s.name for s in statusList">
+                            <option value="">全部连线</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="float: right;margin-right: 10px">
+                        <input type="text" class="form-control" ng-model="grid.name" placeholder="搜索连线">
+                    </div>
+                    <button type="submit" class="btn mySearch" style="position: absolute;right: 15px;width:70px;border: 1px #492824 solid !important;background-color: #FFFFFF">搜索</button>
+                </form>
+
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th style="width:60px;">序号</th>
+                        <th class="text-left">连线名称</th>
+                        <th class="text-center">连线时间</th>
+                        <th ng-if="me.tp==2" style="min-width:100px;">关联作者</th>
+                        <th style="width:120px;">状态</th>
+                        <th style="min-width:100px;">连线人数</th>
+                        <th  style="width:400px;">操作</th>
+                    </tr>
+                    <tr ng-repeat="o in data.data">
+                        <td>
+                            <div style="margin-top: 6px">
+                                {{$index + 1}}
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span style="border:none;display:block;width:200px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" popover="{{o.title}}" popover-trigger="mouseenter"
+                                  class="">{{o.title}}</span>
+                        </td>
+                        <!--<td><div>{{o._start_date | myDate}}</div></td>-->
+                        <td><div>{{o._start_date}}</div></td>
+                        <td ng-if="me.tp==2"><span style="border:none;display:block;width:65px;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;" popover="{{o.user.nick}}" popover-trigger="mouseenter"
+                                  class="">{{o.user.nick}}</span></td>
+                        <td  ng-class="{0:'state-push',1:'state-pushed',2:'state-danger'}[o.status]">
+                            <div style="margin-top: 6px">
+                                {{o.status | liveStatus}}
+                            </div>
+                        </td>
+                        <td><div>{{o.numAttendees + "/" + o.maxAttendees}}</div></td>
+                        <td>
+                        <div style="margin-top: 6px">
+                                <div class="btn-group" dropdown is-open="status.isopen" style="margin-top: -2px;">
+                                    <a ng-if="me.tp==2" type="button" class="dropdown-toggle" ng-disabled="disabled">
+                                        更多
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" style="width:220px;min-height:182px;">
+                                        <li style="margin-bottom: 5px;">
+                                            <span style="margin-left:20px;">作者：</span>
+                                            <span style="margin-left:5px;">{{o.user.nick}}</span>
+                                        </li>
+                                        <li style="margin-bottom: 5px;">
+                                            <span style="margin-left:20px;">创建时间：</span>
+                                            <span style="margin-left:5px;">{{o.ct | date:"yyyy-MM-dd HH:mm"}}</span>
+                                        </li>
+                                        <li class="divider"></li>
+                                    </ul>
+                                </div>
+                                <a href="javascript:" ng-click="view($index)">查看</a>
+                                <a href="javascript:" ng-click="edit($index)">编辑</a>
+                                <a ng-if="me.tp==1" href="javascript:" ng-click="publish($index)" ng-disabled="{{o.status==0 ? 0 : 1}}">发布</a>
+                                <a ng-if="me.tp==2" href="javascript:" ng-click="audit($index)" ng-disabled="{{o.status==0 ? 0 : 1}}">审核</a>
+                                <!--<button class="btn btn-primary btn-xs" ng-click="listRecommendComment($index)">精华讨论</button>-->
+                                <a ng-if="me.tp==2" href="javascript:" ng-click="listOrders($index)">报名管理</a>
+                                <a href="javascript:" ng-click="del($index)">删除</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center">
+                    <pagination
+                            total-items="data.total" ng-model="grid.page"
+                            items-per-page="data.size" class="pagination-sm" boundary-links="true"
+                            max-size="12" rotate="true"
+                            previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+                    </pagination>
+                </div>
+            </div>
+        </div>
+
+        <div tab active="create.show" ng-show="create.show">
+            <div ng-include="'partials/live/live_create.html'"></div>
+        </div>
+
+        <div tab heading="编辑连线" active="edit.show" ng-show="edit.show">
+            <div ng-include="'partials/live/live_edit.html'"></div>
+        </div>
+
+        <div tab heading="连线报名" active="listOrders.show" ng-show="listOrders.show">
+            <div ng-include="'partials/live/live_order_list.html'"></div>
+        </div>
+    </div>
+
+</div>

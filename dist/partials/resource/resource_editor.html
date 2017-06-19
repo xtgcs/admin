@@ -1,0 +1,16 @@
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="modal-header">
+        <h5 class="modal-title">编辑文本</h5>
+    </div>
+    <div class="modal-body">
+        <div text-angular ta-max-text="{{editor.maxlength}}" name="txt_editor"
+             ta-toolbar="[['undo','redo'],['h3'],['clear']]"
+             placeholder="{{editor.maxlength}}字以内" ng-model="editor.txt"></div>
+        <span class="text-success" ng-show="form.txt_editor.$valid">{{editor.txt | editorFilter:editor.maxlength}}</span>
+        <span class="text-danger" ng-show="form.txt_editor.$invalid">已超过字数限制！</span>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="form.$valid && ok()">保存</button>
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+</form>

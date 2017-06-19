@@ -1,0 +1,33 @@
+<div class="col-md-12">
+    <div class="panel panel-default" style="min-height:400px;height:auto;overflow: hidden;padding-bottom:50px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">广告设置</h3>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="row xe-row">
+            <label class="col-sm-2 col-sm-offset-2 control-label" style="margin-top:10px;">广告图片</label>
+
+            <div class="col-sm-6">
+                <div style="padding-bottom:5px;" class="col-sm-9" ng-if="data.ad">
+                    <img ng-src="{{data.ad}}" style="width:100%"/><br/>
+                </div>
+
+                <input type="file" nv-file-select uploader="adUploader" accept="image/*"/>
+
+                <div class="pull-right">
+                    <a href="" class="btn btn-primary btn-xs" ng-click="upload()"
+                       ng-disabled="uploading || !adUploader.queue.length">上传</a>
+
+                    <a href="" class="btn btn-danger btn-xs" ng-click="del()" ng-if="data.ad">删除</a>
+                </div>
+
+                <small><span class="help-block">该图片将在App启动时加载,推荐尺寸640*960</span></small>
+            </div>
+        </div>
+
+    </div>
+</div>

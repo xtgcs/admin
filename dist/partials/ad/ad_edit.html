@@ -1,0 +1,76 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">设置广告</h3>
+        </div>
+        <div class="panel-body">
+            <form name="form" class="form-horizontal" role="form" ng-submit="save()" novalidate>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="image">广告图</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <img ng-show="!!ad.image" style="width:100px;height: 100px;" ng-src="{{ad.image}}"/>
+                            <span class="btn btn-default" ng-disabled="uploading" style="position:relative;">
+                                <!--<i class="fa" ng-class="{'fa-plus': !uploading, 'fa-spinner fa-spin': uploading}"></i>-->
+                                <i class="plus"></i>
+                                <span>上传图片</span>
+                                <input type="file" id="image" name="image" nv-file-select="" uploader="adUploader"
+                                       style="position:absolute;z-index:10;cursor: pointer;right:0;top:0;width:100%;height:100%;opacity:0;-moz-opacity:0;-webkit-opacity:0;filter:alpha(opacity=0);"
+                                       accept="image/jpeg,image/x-png"/>
+                            </span>
+                            <span ng-show="uploading">图片上传中...</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.title.$dirty && form.title.$invalid, 'has-success': form.title.$dirty && form.title.$valid}">
+                    <label for="title" class="col-sm-4 control-label">标题</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="title" name="title" placeholder="昵称"
+                               ng-model="ad.title" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.text.$dirty && form.text.$invalid, 'has-success': form.text.$dirty && form.text.$valid}">
+                    <label for="text" class="col-sm-4 control-label">广告描述</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符" type="text" class="form-control" id="text" name="text" placeholder="描述"
+                               ng-model="ad.text" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.url.$dirty && form.url.$invalid, 'has-success': form.url.$dirty && form.url.$valid}">
+                    <label for="title" class="col-sm-4 control-label">广告链接</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="url" name="url" placeholder="广告链接"
+                               ng-model="ad.url" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-5">
+                        <button class="btn btn-primary" type="submit" ng-disabled="updating || form.$invalid" >
+                            <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                            发布广告
+                        </button>
+                        <button class="btn btn-danger" type="button" ng-click="del()">
+                            <i class="fa " ng-class="{'fa-check': !saving, 'fa-spinner fa-spin': saving}"></i>
+                            清除广告
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

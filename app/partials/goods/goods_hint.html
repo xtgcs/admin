@@ -1,0 +1,26 @@
+<div class="col-md-12">
+    <div class="panel panel-default" style="min-height:400px;height:auto;overflow: hidden;padding-bottom:50px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">物件温馨提示</h3>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="form-group">
+
+            <label class="col-sm-2 col-sm-offset-2 control-label" style="margin-top:10px;">温馨提示内容</label>
+
+            <div class="col-sm-5">
+                <a href="#" editable-textarea="data.txt" e-rows="10" e-cols="47" onbeforesave="save('goodsHint', $data)">
+                    <pre>{{ data.txt }}</pre>
+                </a>
+
+                <p class="text-success">还能输入{{500 - data.txt.length}}字</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div style="">
+
+    <div class="panel-body">
+        <div style="">
+
+            <!--<div class="btn-group" style="width: 100%;margin-top: -5px;margin-bottom: 20px;">-->
+                <!--<button type="button" class="btn btn-primary" ng-click="selectArticle()" style="margin-right: 10px;">-->
+                    <!--添加文章-->
+                <!--</button>-->
+                <!--<form class="navbar-form navbar-right" role="search" ng-submit="search()" style="width: 100%;margin-top: -34px;padding-left: 0px;">-->
+
+                    <!--&lt;!&ndash;<div class="form-group" style="float: right;">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<input type="text" class="form-control" ng-model="grid.name" placeholder="请输入要搜索的关键字">&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<button type="submit" class="btn mySearch" style="position: absolute;right: 15px;width:70px;border: 1px #492824 solid !important;background-color: #FFFFFF">搜索</button>&ndash;&gt;-->
+                <!--</form>-->
+            <!--</div>-->
+
+            <form name="form" class="form-horizontal" role="form" novalidate>
+                <div>
+                    <div >
+                    <!--<div class="sortable-row" sortable="sortableOptions" ng-model="data">-->
+                        <!--<div ng-repeat="o in data" sortable-item style="border: 0px !important;">-->
+                        <div style="border: 0px !important;">
+                            <!--<div sortable-item-handle style="border-top-width: 0;">-->
+                            <div  style="border-top-width: 0;" ng-repeat="o in data.data">
+                                <table class="table">
+                                    <tr>
+                                        <td style="width: 50px">
+                                            <!--<input type="text" style="margin-top: 6px;width: 30px;text-align: center" ng-model="$index">-->
+                                            <div style="margin-top: 6px">
+                                                {{$index + 1}}
+                                            </div>
+                                        </td>
+                                        <td class="text-eft" style="width: 200px" ng-model="previewImg" >
+                                            <img class="headImg" ng-src="{{o.cover.url}}" alt="" style="width: 100%;height: 100px">
+                                            <!--<span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.article.title}}" popover-trigger="mouseenter" class="">{{o.article.title}}</span>-->
+                                        </td>
+                                        <td class="text-eft" style="width: 400px" ng-if="o.type==0">
+                                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.title}}" popover-trigger="mouseenter" class="">{{o.title}}</span>
+                                        </td>
+
+                                        <!--<td data-no-drag>-->
+                                        <!--<div style="margin-top: 6px">-->
+                                            <!--<span ng-click="del($index)">删除</span>-->
+                                        <!--</div>-->
+                                         <!--</td>-->
+                                        <!--<td data-no-drag>-->
+                                            <!--<div style="margin-top: 6px">-->
+                                                <!--<span ng-click="setPay($index)">{{pay}}</span>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="text-center">-->
+                    <!--<pagination-->
+                            <!--total-items="data.total" ng-model="grid.page"-->
+                            <!--items-per-page="data.size" class="pagination-sm" boundary-links="true"-->
+                            <!--max-size="8" rotate="true"-->
+                            <!--previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">-->
+                    <!--</pagination>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="col-md-12" style="padding: 10px;text-align: center">
+                        <!--<button class="btn btn-primary" type="button" ng-click="save()">-->
+                            <!--<i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>-->
+                            <!--保存-->
+                        <!--</button>-->
+                        <button class="btn btn-warning" ng-click="managecancel()">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

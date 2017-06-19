@@ -1,0 +1,31 @@
+<div style="">
+
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" role="form" ng-submit="form.$valid && save()" novalidate>
+
+            <div class="form-group" style="margin-top: -10px;">
+                <label class="col-sm-12 control-label" style="text-align: center;margin-bottom: 5px;">消息详情</label>
+
+                <div class="col-sm-12">
+                    <input tooltip="中英文字符或数字" type="text" maxlength="200" class="form-control" id="text" name="text" placeholder="消息内容"
+                           ng-model="message.text" required>
+
+                    <span class="text-success" ng-show="form.text.$valid">{{message.text | textLengthFilter}}</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button class="btn btn-primary" ng-disabled="uploading || form.$invalid" type="submit">
+                        <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

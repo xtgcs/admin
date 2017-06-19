@@ -1,0 +1,62 @@
+
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="modal-header">
+        <h5 class="modal-title">设置时间</h5>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" style="margin: 0 auto;height: 117px;width: 330px;">
+            <label class="control-label" style="padding: 0;float: left;margin-top: 34px">开始</label>
+
+            <div style="width:166px;height:44px;display: inline-block;float: left;margin: 27px 10px">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           datepicker-popup={{dateFormat}}
+                           ng-model="startDate.date"
+                           is-open="startDate.opened"
+                           ng-required="true"
+                           clear-text="清空"
+                           current-text="今天"
+                           close-text="关闭"/>
+                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openStartDatePicker($event)"></button>
+                                </span>
+                </p>
+            </div>
+            <div style="margin-left: -37px;width: 105px;display: inline-block;float: left">
+                <p class="input-group">
+                    <timepicker ng-model="startDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin: 0 auto;height: 117px;width: 330px">
+            <label class="control-label" style="padding: 0;float: left;margin-top: 34px">结束</label>
+
+            <div style="width:166px;height:44px;display: inline-block;float: left;margin: 27px 10px">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           datepicker-popup={{dateFormat}}
+                           ng-model="endDate.date"
+                           is-open="endDate.opened"
+                           ng-required="true"
+                           clear-text="清空"
+                           current-text="今天"
+                           close-text="关闭"/>
+                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openEndDatePicker($event)"></button>
+                                </span>
+                </p>
+            </div>
+            <div  style="margin-left: -37px;width: 105px;display: inline-block;float: left">
+                <p class="input-group">
+                    <timepicker ng-model="endDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="form.$valid && ok()">保存</button>
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+</form>

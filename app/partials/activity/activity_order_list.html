@@ -1,0 +1,87 @@
+<div class="col-md-12">
+    <div style="border: 0px; border-top-width: 0; " >
+        <div style="background-color:#fc5135 ;height: 20px;width: 3px;position: absolute;margin-top:4px"></div>
+        <div style=" color: #8d7d7e;margin-top:-13px;font-size: 20px;">&nbsp;&nbsp;{{kid}}</div>
+        <form class="navbar-form" style="padding-left: 0px;margin-top: 30px;margin-bottom: 20px;" role="search" ng-submit="search()">
+
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="orderGrid.name">
+            </div>
+            <div class="form-group" style="margin-left: 10px">
+                <select class="form-control" ng-model="orderGrid.status"
+                        ng-options="s.id as s.name for s in orderStatusList">
+                    <option value="">全部报名</option>
+                </select>
+            </div>
+            <button type="submit" class="btn mySearch" style="margin-left: 10px;width:70px;border: 1px #492824 solid !important;background-color: #FFFFFF">搜索</button>
+            <button class="btn" ng-click="cancel()" style="margin-left: 10px;width:100px;border: 1px #492824 solid !important;background-color: #FFFFFF">返回上一级</button>
+            <div style="float:right;padding-top: 10px;"><a ng-href="{{exportUrl}}">导出Excel(*.xlsx)</a></div>
+        </form>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th class="text-center" style="width:50px;">序号</th>
+                <th class="text-center" style="width:70px;">门票号</th>
+                <th class="text-center" style="width:70px;">场次</th>
+                <th class="text-center" style="width:60px;">姓名</th>
+                <th class="text-center" style="width:120px;">手机号</th>
+                <th class="text-center" style="width:100px;">支付方式</th>
+                <th class="text-center">支付单号</th>
+                <th class="text-center" style="width:50px;">数量</th>
+                <th class="text-center" style="width:50px;">金额</th>
+                <th class="text-center" style="width:100px;">时间</th>
+                <th class="text-center">备注</th>
+                <th class="text-center"  style="width:70px;">状态</th>
+            </tr>
+            <tr ng-repeat="o in orders.data">
+                <td class="text-center">
+                    <div>{{$index + 1}}</div>
+                </td>
+                <td class="text-center">
+                    <div>NO.{{o.ticketNo}}</div>
+                </td>
+                <td class="text-center">
+                    <div>{{o.title}}</div>
+                </td>
+                <td class="text-center">
+                    <div>{{o.name || o.user.nick}}</div>
+                </td>
+                <td class="text-center">
+                    <div>{{o.mobile}}</div>
+                </td>
+                <td class="text-center">
+                    <div>{{o.thirdParty}}</div>
+                </td>
+                <td class="text-center">
+                    <span style="border:none;overflow: hidden;background-color:rgba(250,250,250,0.0) !important; width:135px;text-overflow:ellipsis;"
+                          popover="{{o.tradeNo}}" popover-trigger="mouseenter"
+                          class="btn btn-default">{{o.tradeNo}}</span>
+                </td>
+                <td class="text-center">
+                    <div>{{o.quantity}}</div>
+                </td>
+                <td class="text-center">
+                    <div>{{o.quantity*o.price}}</div>
+                </td>
+                <td class="text-center" style="width: 100px">
+                    <div>{{formatActivityDate(o.ct)}}</div>
+                </td>
+                <td class="text-center">
+                    <span style="border:none;overflow: hidden;background-color:rgba(250,250,250,0.0) !important; width:100px;text-overflow:ellipsis;" popover="{{o.memo}}"
+                          popover-trigger="mouseenter"
+                          class="btn btn-default">{{o.memo}}</span>
+                </td>
+                <td class="text-center" ng-class="{2: 'state-danger', 0: 'state-push' ,1:'state-pushed'}[o.status]">
+                    <div>{{o.status | activityOrderStatus}}</div>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <pagination
+                    total-items="orders.total" ng-model="orderGrid.page"
+                    items-per-page="orders.size" class="pagination-sm" boundary-links="true"
+                    max-size="12" rotate="true"
+                    previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+            </pagination>
+        </div>
+    </div>
+</div>

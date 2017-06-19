@@ -1,0 +1,150 @@
+<div class="col-md-12">
+
+    <div tabset>
+        <div tab active="bannerlist.show" disabled="true">
+            <div>
+
+                <div class="btn-group" style="width: 100%; padding: 0px;margin-top: -5px;margin-bottom: 20px">
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled" ng-click="editRecommended()">
+                        编辑推荐位
+                    </button>
+                </div>
+                <div class="table table-striped table-bordered">
+                    <ul class="title_list">
+                        <li class="text-center one_column">序号</li>
+                        <li class="text-center two_column">标题</li>
+                        <li class="text-center three_one_column">类型</li>
+                    </ul>
+                    <ul class="content_list" ng-repeat="o in data.data">
+                        <li ng-if="o.type==1">
+                            <ul class="line_list" ng-repeat="list in o.recommends">
+                                <li class="text-center one_column">
+                                    {{$index + 1}}
+                                </li>
+                                <li class="text-center two_column" >
+                                <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.title}}" popover-trigger="mouseenter"
+                                      class="">{{list.title}}</span>
+                                </li>
+                                <li class="text-center three_one_column">文章</li>
+                            </ul>
+                        </li>
+                        <li ng-if="o.type==2">
+                            <ul class="line_list" ng-repeat="list in o.recommends">
+                                <li class="text-center one_column">
+                                    {{$index + 1}}
+                                </li>
+
+                                <li class="text-center two_column" >
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.title}}" popover-trigger="mouseenter"
+                                  class="">{{list.title}}</span>
+                                </li>
+                                <li class="text-center three_one_column">专题</li>
+                            </ul>
+                        </li>
+                        <li ng-if="o.type==3">
+                            <ul class="line_list" ng-repeat="list in o.recommends">
+                                <li class="text-center one_column">
+                                    {{$index + 1}}
+                                </li>
+
+                                <li class="text-center two_column" >
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.title}}" popover-trigger="mouseenter"
+                                  class="">{{list.title}}</span>
+                                </li>
+                                <li class="text-center three_one_column">连线</li>
+
+                            </ul>
+                        </li>
+                        <li ng-if="o.type==0">
+                            <ul class="line_list" ng-repeat="list in o.recommends">
+                                <li class="text-center one_column">
+                                    {{$index + 1}}
+                                </li>
+
+                                <li class="text-center two_column" >
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.title}}" popover-trigger="mouseenter"
+                                  class="">{{list.title}}</span>
+                                </li>
+                                <li class="text-center three_one_column">活动</li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!--<table class="table table-striped table-bordered">-->
+                    <!--<tr>-->
+                        <!--<th class="text-center">序号</th>-->
+                        <!--<th class="text-center">标题</th>-->
+                        <!--<th class="text-center">类型</th>-->
+                    <!--</tr>-->
+                    <!--<div ng-repeat="o in data.data">-->
+                        <!--<div ng-if="o.type==1">-->
+                          <!--<tr ng-repeat="list in o.recommends">-->
+                             <!--<td class="text-center" style="border:1px #DDDDDD solid !important;" >-->
+                                    <!--{{$index + 1}}-->
+                            <!--</td>-->
+                              <!--{{list.article.title}}-->
+                            <!--<td class="text-center" >-->
+                                <!--<span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.article.title}}" popover-trigger="mouseenter"-->
+                                      <!--class="">{{list.article.title}}</span>-->
+                            <!--</td>-->
+                            <!--<td class="text-center">文章</td>-->
+                        <!--</tr>-->
+                        <!--</div>-->
+                        <!--<div ng-if="o.type==2">-->
+                        <!--<tr ng-repeat="list in o.recommends">-->
+                            <!--<td class="text-center" style="border:1px #DDDDDD solid !important;" >-->
+                                <!--{{$index + 1}}-->
+                            <!--</td>-->
+
+                            <!--<td class="text-center" >-->
+                            <!--<span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.topic.title}}" popover-trigger="mouseenter"-->
+                                  <!--class="">{{list.topic.title}}</span>-->
+                            <!--</td>-->
+                            <!--<td class="text-center">专题</td>-->
+                        <!--</tr>-->
+                        <!--</div>-->
+                        <!--<div ng-if="o.type==3">-->
+                        <!--<tr ng-repeat="list in o.recommends">-->
+                            <!--<td class="text-center" style="border:1px #DDDDDD solid !important;" >-->
+                                <!--{{$index + 1}}-->
+                            <!--</td>-->
+
+                            <!--<td class="text-center" >-->
+                            <!--<span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.live.title}}" popover-trigger="mouseenter"-->
+                                  <!--class="">{{list.live.title}}</span>-->
+                            <!--</td>-->
+                            <!--<td class="text-center">专题</td>-->
+                            <!---->
+                        <!--</tr>-->
+                        <!--</div>-->
+                        <!--<div ng-if="o.type==0">-->
+                        <!--<tr ng-repeat="list in o.recommends">-->
+                            <!--<td class="text-center" style="border:1px #DDDDDD solid !important;" >-->
+                                <!--{{$index + 1}}-->
+                            <!--</td>-->
+
+                            <!--<td class="text-center" >-->
+                            <!--<span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{list.activity.name}}" popover-trigger="mouseenter"-->
+                                  <!--class="">{{list.activity.name}}</span>-->
+                            <!--</td>-->
+                            <!--<td class="text-center">专题</td>-->
+                            <!---->
+                        <!--</tr>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</table>-->
+
+  </div>
+        </div>
+
+        <div tab  active="edit.show" ng-show="edit.show">
+            <div ng-include="'partials/recommended/recommended_edit.html'"></div>
+        </div>
+
+    </div>
+
+</div>

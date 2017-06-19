@@ -1,0 +1,88 @@
+<div class="col-md-12">
+
+    <div tabset>
+        <div tab  active="applicationlist.show"  disabled="true">
+            <div style="">
+
+                <form class="navbar-form navbar-left" role="search" ng-submit="search()" style="width: 100%;margin-top: -10px;padding-left: 0px;">
+                    <div class="form-group" style="float: right;margin-right: 70px;">
+                        <select class="form-control" ng-model="grid.status" ng-options="s.id as s.name for s in statusList">
+                            <option value="">全部达人申请</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="float: right;margin-right: 10px;">
+                        <input type="text" placeholder="搜索达人" class="form-control" ng-model="grid.name">
+                    </div>
+                    <button type="submit" class="btn mySearch" style="position: absolute;right: 15px;width:70px;border: 1px #492824 solid !important;background-color: #FFFFFF">搜索</button>
+                </form>
+
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th width="60px">序号</th>
+                        <th class="text-center" width="300px">昵称</th>
+                        <th class="text-center" width="10%">姓名</th>
+                        <th class="text-center" width="10%">性别</th>
+                        <th class="text-center">年龄</th>
+                        <th class="text-center">手机号</th>
+                        <th width="10%">状态</th>
+                        <th width="15%">操作</th>
+                    </tr>
+                    <tr ng-repeat="o in data.data">
+                        <td>
+                            <div style="margin-top: 6px">
+                                {{$index + 1}}
+                            </div>
+                        </td>
+                        <td class="text-eft">
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.user.nick}}" popover-trigger="mouseenter"
+                                  class="">{{o.user.nick}}</span>
+                        </td>
+                        <td class="text-eft">
+                            <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.name}}" popover-trigger="mouseenter"
+                                  class="">{{o.name}}</span>
+                        </td>
+                        <td width="100px">
+                            <div style="margin-top: 6px">
+                                {{o.gender}}
+                            </div>
+                        </td>
+                        <td width="100px">
+                            <div style="margin-top: 6px">
+                                {{o.age}}
+                            </div>
+                        </td>
+                        <td class="text-eft">
+                            <div style="margin-top: 6px">
+                                {{o.mobile}}
+                            </div>
+                        </td>
+                        <td ng-class="{2: 'state-danger', 0: 'state-push' ,1:'state-pushed'}[o.status]">
+                            <div style="margin-top: 6px">
+                                {{o.status | applicationStatus}}
+                            </div>
+                        </td>
+                        <td width="650px">
+                            <div style="margin-top: 6px">
+                                <a href="javascript:" ng-click="view($index)">查看</a>
+                                <a href="javascript:" ng-click="audit($index)" ng-show="o.status == 0">审核</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center">
+                    <pagination
+                            total-items="data.total" ng-model="grid.page"
+                            items-per-page="data.size" class="pagination-sm" boundary-links="true"
+                            max-size="12" rotate="true"
+                            previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+                    </pagination>
+                </div>
+            </div>
+        </div>
+
+        <div tab heading="达人申请" active="view.show" ng-show="view.show">
+            <div ng-include="'partials/application/application_view.html'"></div>
+        </div>
+    </div>
+
+</div>

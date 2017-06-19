@@ -1,0 +1,157 @@
+<div style="">
+
+    <div class="panel-body">
+        <div style="">
+
+            <div class="btn-group" style="width: 100%;margin-top: -5px;margin-bottom: 20px;">
+                <button type="button" class="btn btn-primary" ng-click="selectArticle()" style="margin-right: 10px;">
+                    添加文章
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="selectActivity()" style="margin-right: 10px;">
+                    添加活动
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="selectLive()" style="margin-right: 10px;">
+                    添加连线
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="selectColumn()" style="margin-right: 10px;">
+                    添加课堂
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="selectAd()" style="margin-right: 10px;">
+                    添加链接
+                </button>
+            </div>
+
+            <form name="form" class="form-horizontal" role="form" novalidate>
+                <div>
+                    <div class="sortable-row"  ng-model="data">
+                        <div ng-repeat="o in data"  style="border: 0px !important;">
+                            <div  style="border-top-width: 0;">
+                                <table class="table table-striped table-bordered">
+                                    <tr>
+                                        <td style="width: 50px">
+                                            <div style="margin-top: 6px">
+                                                {{$index + 1}}
+                                            </div>
+                                        </td>
+                                        <td class="text-eft" style="width: 200px" ng-model="bannerImage" ng-if="o.type==0">
+                                            <img class="headImg" ng-src="{{o.image}}" alt="" style="width: 100%;height: 100px">
+                                            <button ng-click="selectTopImage($index)" style="margin-top: 10px">重传图片</button>
+                                        </td>
+                                        <td class="text-eft" style="width: 250px" ng-if="o.type==0">
+                                            <span style="border:none;width:250px;overflow: hidden;text-overflow:ellipsis;display: block" popover="{{o.article.title}}" popover-trigger="mouseenter" class="">{{o.article.title}}</span>
+                                        </td>
+                                        <td ng-if="o.type==0" style="width:60px">文章</td>
+                                        <td class="text-eft" style="width: 200px" ng-model="bannerImage" ng-if="o.type==1" >
+                                            <img class="headImg" ng-src="{{o.image}}" alt="" style="width: 100%;height: 100px">
+                                            <button ng-click="selectTopImage($index)" style="margin-top: 10px">重传图片</button>
+                                        </td>
+
+                                        <td class="text-eft" style="width: 250px" ng-if="o.type==1">
+                                            <span style="border:none;width:250px;overflow: hidden;text-overflow:ellipsis;display: block" popover="{{o.activity.name}}" popover-trigger="mouseenter" class="">{{o.activity.name}}</span>
+                                        </td>
+                                        <td ng-if="o.type==1" style="width: 60px">活动</td>
+                                        <td class="text-eft" style="width: 200px" ng-model="bannerImage" ng-if="o.type==2">
+                                            <img class="headImg" ng-src="{{o.image}}" alt="" style="width: 100%;height: 100px">
+                                            <button ng-click="selectTopImage($index)" style="margin-top: 10px">重传图片</button>
+                                        </td>
+
+                                        <td class="text-eft" style="width: 250px" ng-if="o.type==2">
+                                            <span style="border:none;width:250px;overflow: hidden;text-overflow:ellipsis;display: block" popover="{{o.topic.title}}" popover-trigger="mouseenter" class="">{{o.topic.title}}</span>
+                                        </td>
+                                        <td ng-if="o.type==2" style="width: 60px">专题</td>
+                                        <td class="text-eft" style="width: 200px" ng-model="bannerImage" ng-if="o.type==3" >
+                                            <img class="headImg" ng-src="{{o.image}}" alt="" style="width: 100%;height: 100px">
+                                            <button ng-click="selectTopImage($index)" style="margin-top: 10px">重传图片</button>
+                                        </td>
+
+                                        <td class="text-eft" style="width: 250px" ng-if="o.type==3">
+                                            <span style="border:none;width:250px;overflow: hidden;text-overflow:ellipsis;display: block" popover="{{o.live.title}}" popover-trigger="mouseenter" class="">{{o.live.title}}</span>
+                                        </td>
+                                        <td ng-if="o.type==3" style="width: 60px">连线</td>
+                                        <td class="text-eft" style="width: 200px" ng-model="bannerImage" ng-if="o.type==4" >
+                                            <img class="headImg" ng-src="{{o.image}}" alt="" style="width: 100%;height: 100px">
+                                            <button ng-click="selectTopImage($index)" style="margin-top: 10px">重传图片</button>
+                                        </td>
+
+                                        <td class="text-eft" style="width: 250px" ng-if="o.type==4">
+                                            <span style="border:none;width:250px;overflow: hidden;text-overflow:ellipsis;display: block" class="">
+                                                {{o.url}}
+                                                <!--<input type="url" ng-model="ad.url" style="color: #333" ng-change="setUrl($index)">-->
+                                            </span>
+                                            <button ng-click="reviseUrl($index)" style="margin-top: 10px;">修改外链</button>
+
+                                        </td>
+                                        <td ng-if="o.type==4" style="width: 60px">广告</td>
+
+                                        <td class="text-eft" style="width: 200px" ng-model="bannerImage" ng-if="o.type==5" >
+                                            <img class="headImg" ng-src="{{o.image}}" alt="" style="width: 100%;height: 100px">
+                                            <button ng-click="selectTopImage($index)" style="margin-top: 10px">重传图片</button>
+                                        </td>
+
+                                        <td class="text-eft" style="width: 250px" ng-if="o.type==5">
+                                            <span style="border:none;width:250px;overflow: hidden;text-overflow:ellipsis;display: block" popover="{{o.column.name}}" popover-trigger="mouseenter" class="">{{o.column.name}}</span>
+                                        </td>
+                                        <td ng-if="o.type==5" style="width: 60px">课堂</td>
+
+                                        <td ng-if="o.type==0">
+                                            <div class="time">开始时间：{{o.st | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <div class="time">结束时间：{{o.et | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <button ng-click="reviseTime($index)" style="margin-top: 10px;">设置时间</button>
+
+                                        </td>
+                                        <td ng-if="o.type==1">
+                                            <div class="time">开始时间：{{o.st | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <div class="time">结束时间：{{o.et | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <button ng-click="reviseTime($index)" style="margin-top: 10px;">设置时间</button>
+                                        </td>
+
+
+                                        <td ng-if="o.type==2">
+                                            <div class="time">开始时间：{{o.st | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <div class="time">结束时间：{{o.et | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <button ng-click="reviseTime($index)" style="margin-top: 10px;">设置时间</button>
+                                        </td>
+                                        <td ng-if="o.type==3">
+                                            <div class="time">开始时间：{{o.st | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <div class="time">结束时间：{{o.et | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <button ng-click="reviseTime($index)" style="margin-top: 10px;">设置时间</button>
+                                        </td>
+                                        <td ng-if="o.type==4">
+                                            <div class="time">开始时间：{{o.st | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <div class="time">结束时间：{{o.et | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <button ng-click="reviseTime($index)" style="margin-top: 10px;">设置时间</button>
+                                        </td>
+                                        <td ng-if="o.type==5">
+                                            <div class="time">开始时间：{{o.st | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <div class="time">结束时间：{{o.et | date:'yyyy-MM-dd HH:mm'}}</div>
+                                            <button ng-click="reviseTime($index)" style="margin-top: 10px;">设置时间</button>
+                                        </td>
+                                        <td>
+                                            <div style="margin-top: 6px;">
+                                                <span ng-if="!o.id" ng-click="save($index)">添加</span>
+                                                <span ng-if="o.id" ng-click="update($index)">修改</span>
+                                                <span ng-click="delete($index)">删除</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12" style="padding: 10px;text-align: center">-->
+                        <!--<button class="btn btn-primary" type="button" ng-click="save()">-->
+                            <!--<i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>-->
+                            <!--保存-->
+                        <!--</button>-->
+                        <!--<button class="btn btn-warning" ng-click="cancel()">取消</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </form>
+        </div>
+
+    </div>
+
+</div>

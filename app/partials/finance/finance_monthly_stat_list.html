@@ -1,0 +1,35 @@
+<div style="">
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th style="width:60px;">序号</th>
+            <th class="text-center">日期</th>
+            <th style="width:120px;">总金额(元)</th>
+        </tr>
+        <tr ng-repeat="o in data.data">
+            <td>
+                <div style="margin-top: 6px">
+                    {{$index + 1}}
+                </div>
+            </td>
+            <td class="text-eft">
+                <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;"
+                      class="btn btn-default">{{o.dt | date:"yyyy-MM"}}</span>
+            </td>
+            <td class="text-eft">
+                <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.amount}}" popover-trigger="mouseenter"
+                      class="btn btn-default">{{o.amount | number:2}}</span>
+            </td>
+        </tr>
+    </table>
+    <div class="text-center">
+        <pagination
+                total-items="data.total" ng-model="grid.page"
+                items-per-page="data.size" class="pagination-sm" boundary-links="true"
+                max-size="12" rotate="true"
+                previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+        </pagination>
+    </div>
+</div>
+</div>
+
+

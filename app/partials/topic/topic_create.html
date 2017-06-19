@@ -1,0 +1,145 @@
+<div style="">
+
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" role="form" ng-submit="form.$valid && save()" novalidate>
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.title.$dirty && form.title.$invalid, 'has-success': form.title.$dirty && form.title.$valid}">
+                <label for="title" class="col-sm-2 control-label" >标题</label>
+
+                <div class="col-sm-6">
+                    <input tooltip="中英文字符" type="text" class="form-control" id="title" name="title" placeholder="标题"
+                           ng-model="topic.title" required maxlength="30">
+                </div>
+                <div class="col-sm-3">
+                    <span>还能输入<span style="color: red">{{30 - topic.title.length}}</span>字</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" col-sm-3 control-label">专题Banner图</label>
+
+                <div class="col-sm-6">
+                    <div>
+                        <div ng-model="bannerImg" style="width:150px;">
+                            <div ng-repeat="resource in bannerImg" style="width:150px;">
+                                <div ng-include="'partials/resource/bannerImg_item.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="bannerImg.length>0" ng-click="selectBannerImage()">
+                        选择banner图
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">专题头图</label>
+
+                <div class="col-sm-6">
+
+                    <div>
+                        <div ng-model="previewImg" style="width:150px;">
+                            <div ng-repeat="resource in previewImg" style="width:150px;">
+                                <div ng-include="'partials/resource/topImg_item.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="previewImg.length>0" ng-click="selectTopImage()">
+                        选择头图
+                    </button>
+                    <span style="color:#DDDDDD">说明：图片格式必须为：jpg或png</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">专题描述</label>
+
+                <div class="col-sm-7">
+                    <div style="margin-top: -6px">
+                        <div text-angular ta-max-text="200" name="desc"
+                             ta-toolbar="[['undo','redo'],['clear']]"
+                             ta-paste="stripFormat($html)"
+                             placeholder="200字以内" ng-model="topic.desc"></div>
+                        <span class="text-success" ng-show="form.desc.$valid">{{topic.desc | editorFilter:200}}</span>
+                        <span class="text-danger" ng-show="form.desc.$invalid">已超过字数限制！</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">专题推荐语</label>
+
+                <div class="col-sm-7">
+                    <div style="margin-top: -6px">
+                        <div text-angular ta-max-text="2000" name="text"
+                             ta-toolbar="[['h1', 'appListItem'],['clear']]"
+                             ta-paste="stripFormat($html)"
+                             placeholder="2000字以内" ng-model="topic.text"></div>
+                        <span class="text-success" ng-show="form.text.$valid">{{topic.text | editorFilter:2000}}</span>
+                        <span class="text-danger" ng-show="form.text.$invalid">已超过字数限制！</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="topic.type==0">
+                <label class="col-sm-2 control-label">专题文章</label>
+
+                <div class="col-sm-6" >
+
+                    <p ng-repeat="article in linkArticle">
+                        {{$index + 1}}、{{article.title}}
+                        &nbsp;&nbsp;
+                        <a href="javascript:;" ng-click="removeArticle(article.id)">
+                            移除
+                        </a>
+                    </p>
+
+                    <button ng-disabled="articleSelecting" class="btn btn-default" ng-click="selectArticle()">
+                        <!--<i class="fa" ng-class="{'fa-plus': !articleSelecting, 'fa-spinner fa-spin': articleSelecting}"></i>-->
+                        <i class="plus"></i>
+                        <span>添加文章</span>
+                    </button>
+                    <span style="color:#DDDDDD">说明：最多添加10条</span>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="topic.type==1">
+                <label class="col-sm-2 control-label">专题活动</label>
+
+                <div class="col-sm-6" style="padding-top:8px">
+
+                    <p ng-repeat="activity in linkActivity">
+                        {{$index + 1}}、{{activity.name}}
+                        &nbsp;&nbsp;
+                        <a href="javascript:;" ng-click="removeActivity(activity.id)">
+                            移除
+                        </a>
+                    </p>
+
+                    <button style="padding-top:8px" ng-disabled="activitySelecting" class="btn btn-default" ng-click="selectActivity()">
+                        <!--<i class="fa" ng-class="{'fa-plus': !activitySelecting, 'fa-spinner fa-spin': activitySelecting}"></i>-->
+                        <i class="plus"></i>
+                        <span>添加活动</span>
+                    </button>
+                    <span style="color:#A94442">最多添加10条</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-11" style="text-align: center">
+                    <button class="btn btn-primary" ng-disabled="uploading || form.$invalid" type="submit">
+                        <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

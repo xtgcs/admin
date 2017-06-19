@@ -1,0 +1,336 @@
+<div style="">
+
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" role="form" ng-submit="form.$valid && save()" novalidate>
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.title.$dirty && form.name.$invalid, 'has-success': form.name.$dirty && form.name.$valid}">
+                <label for="name" class="col-sm-2 control-label">连线名称</label>
+
+                <div class="col-sm-5">
+                    <input tooltip="中英文字符" type="text" class="form-control" id="name" name="name" placeholder="连线名称"
+                           ng-model="live.title" required maxlength="17"><span class="text-success">还能输入{{17 - live.title.length}}字</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="text-success">还能输入<span style="color: red;">{{17 - live.title.length}}</span>字</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">开始时间</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               datepicker-popup={{dateFormat}}
+                               ng-model="startDate.date"
+                               is-open="startDate.opened"
+                               ng-required="true"
+                               clear-text="清空"
+                               current-text="今天"
+                               close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon date_icon" ng-click="openStartDatePicker($event)"></button>
+                                </span>
+                    </p>
+                </div>
+                <div class="col-sm-2" style="margin-top:-28px;">
+                    <p class="input-group">
+                        <timepicker ng-model="startDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">结束时间</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               datepicker-popup={{dateFormat}}
+                               ng-model="endDate.date"
+                               is-open="endDate.opened"
+                               ng-required="true"
+                               clear-text="清空"
+                               current-text="今天"
+                               close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openEndDatePicker($event)"></button>
+                                </span>
+                    </p>
+                </div>
+                <div class="col-sm-2" style="margin-top:-28px;">
+                    <p class="input-group">
+                        <timepicker ng-model="endDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">报名截止时间</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               datepicker-popup={{dateFormat}}
+                               ng-model="deadlineDate.date"
+                               is-open="deadlineDate.opened"
+                               ng-required="true"
+                               clear-text="清空"
+                               current-text="今天"
+                               close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openDeadlineDatePicker($event)"></button>
+                                </span>
+                    </p>
+                </div>
+                <div class="col-sm-2" style="margin-top:-28px;">
+                    <p class="input-group">
+                        <timepicker ng-model="deadlineDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">创建时间</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               datepicker-popup={{dateFormat}}
+                               datepicker-localdate
+                               ng-model="createDate.date"
+                               is-open="createDate.opened"
+                               ng-required="true"
+                               clear-text="清空"
+                               current-text="今天"
+                               close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openCreateDatePicker($event)"></button>
+                                </span>
+                    </p>
+                </div>
+                <div class="col-sm-2" style="margin-top:-28px;">
+                    <p class="input-group">
+                        <timepicker ng-model="createDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="me.tp == 2">
+                <label class=" col-sm-2 control-label">发布方式</label>
+
+                <div class="col-sm-5">
+                    <div>
+                        <select class="form-control" required ng-model="live.autoPublishString" ng-options="s.id as s.name for s in publishTypes">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="live.autoPublishString=='1'" ng-if="me.tp == 2">
+                <label class="col-sm-2 control-label">发布时间</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               datepicker-popup={{dateFormat}}
+                               datepicker-localdate
+                               ng-model="publishDate.date"
+                               is-open="publishDate.opened"
+                               ng-required="true"
+                               clear-text="清空"
+                               current-text="今天"
+                               close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openPublishDatePicker($event)"></button>
+                                </span>
+                    </p>
+                </div>
+                <div class="col-sm-2" style="margin-top:-28px;">
+                    <p class="input-group">
+                        <timepicker ng-model="publishDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="me.tp == 2">
+                <label class=" col-sm-2 control-label">推送设置</label>
+
+                <div class="col-sm-5">
+                    <div>
+                        <select class="form-control" required ng-model="live.needPushString" ng-options="s.id as s.name for s in pushSetting">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="me.tp != 1" class="form-group">
+                <label class=" col-sm-2 control-label">作者</label>
+
+                <div class="col-sm-5"  style="position: relative;">
+                    <input  type="text"  class="form-control"
+                            ng-model="name.author_name"  ng-keyup="myKeyup()" placeholder="输入作者名称" required>
+                    <div class="results" ng-show="results">
+                        <ul>
+                            <li ng-repeat="author in authors" ng-click="getAuthor($index)" >
+                                <img class="" ng-src="{{author.icon}}" alt="">
+                                <span class="nick" ng-model="author.nick">{{author.nick}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="margin-top: 7px;" ng-show="noauthor">
+                    <span style="color: red">没有该作者！</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">价格</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="number" class="form-control"
+                               ng-model="live.price"
+                               ng-required="true"/>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">最大可提问人数</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="number" class="form-control"
+                               ng-model="live.maxAskAttendees"
+                               ng-required="true"/>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">最大可报名人数</label>
+
+                <div class="col-sm-5">
+                    <p class="input-group">
+                        <input type="number" class="form-control"
+                               ng-model="live.maxAttendees"
+                               ng-required="true"/>
+                    </p>
+                </div>
+            </div>
+
+            <!--<div ng-if="me.tp != 1" class="form-group">-->
+                <!--<label class="col-sm-2 control-label">关联作者</label>-->
+
+                <!--<div class="col-sm-6">-->
+
+                    <!--<input tooltip="中英文字符" type="text" style="width: 100px;" class="form-control" placeholder="请选择作者"-->
+                           <!--ng-model="author_name" readonly="true" required>-->
+                <!--</div>-->
+                <!--<div class="col-sm-3">-->
+                    <!--<button ng-disabled="authorSelecting" class="btn btn-default" ng-click="selectAuthor()" style="border: 1px solid !important;">-->
+                        <!--&lt;!&ndash;<i class="fa" ng-class="{'fa-plus': !authorSelecting, 'fa-spinner fa-spin': authorSelecting}"></i>&ndash;&gt;-->
+                        <!--<i class="plus"></i>-->
+                        <!--<span>选择作者</span>-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">活动类型</label>
+
+                <div class="col-sm-5">
+                    <div style="margin-top: -6px;width:174px;height:44px;">
+                        <select class="form-control" required ng-model="live.category" ng-options="s.id as s.name for s in category">
+                            <option value="">请选择类型</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">连线摘要</label>
+
+                <div class="col-sm-8">
+                    <div style="margin-top: -6px">
+                        <div class="mini-editor" text-angular ng-required ta-max-text="500" name="desca"
+                             ta-toolbar="[['undo','redo'],['clear']]"
+                             placeholder="活动正文内容" ng-model="live.desc"></div>
+                        <span class="text-success" ng-show="form.desc.$valid">{{live.desc | editorFilter:500}}</span>
+                        <span class="text-danger" ng-show="form.desc.$invalid">已超过字数限制！</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">连线内容</label>
+
+                <div class="col-sm-8">
+                    <div>
+                        <div id="content-editor" class="large-editor" ta-paste="stripFormat($html)"  text-angular ta-max-text="20000" name="liveContent"
+                             ta-toolbar="{{[['h1', 'appListItem'],['appInsertImage', 'appInsertVideo', 'appInsertAudio', 'appMediaDesc']]}}"
+                             placeholder="活动正文内容" ng-model="liveContent"></div>
+                        <span class="text-success" ng-show="form.liveContent.$valid">{{liveContent | editorFilter:20000}}</span>
+                        <span class="text-danger" ng-show="form.liveContent.$invalid">已超过字数限制！</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">连线头图</label>
+
+                <div class="col-sm-6">
+
+                    <div>
+                        <div ng-model="previewImg" style="width:150px;">
+                            <div ng-repeat="resource in previewImg" style="width:150px;">
+                                <div ng-include="'partials/resource/topImg_item.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-default" style="border: 1px solid !important;" ng-disabled="previewImg.length>0" ng-click="selectTopImage()">
+                        选择头图
+                    </button>
+                    <span style="color:#DDDDDD">说明：头图显示在连线详情页中</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">连线Banner图</label>
+
+                <div class="col-sm-6">
+                    <div>
+                        <div ng-model="bannerImg" style="width:150px;">
+                            <div ng-repeat="resource in bannerImg" style="width:150px;">
+                                <div ng-include="'partials/resource/bannerImg_item.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default" style="border: 1px solid !important;" ng-disabled="bannerImg.length>0" ng-click="selectBannerImage()">
+                        选择banner图
+                    </button>
+                    <span style="color:#DDDDDD">说明：Banner图显示在主页Banner中</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-11" style="text-align: center">
+                    <button class="btn btn-default" style="border: 1px solid !important;" ng-disabled="uploading || form.$invalid" type="submit">
+                        <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-default" style="border: 1px solid !important;" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

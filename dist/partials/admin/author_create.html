@@ -1,0 +1,180 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">新增作者</h3>
+        </div>
+        <div class="panel-body">
+            <form name="createUserForm" class="form-horizontal" role="form" ng-submit="save()" novalidate>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">头像</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <div ng-if="user.icon" style="padding-bottom:5px;width: 50px;height: 50px">
+                                <img style="width: 100%;height: 100%" ng-src="{{user.icon}}"/><br/>
+                            </div>
+                            <input type="file" nv-file-select uploader="iconUploader" accept="image/jpeg,image/x-png" onchange="angular.element(this).scope().img_upload(this.files)"/>
+                            <small><span class="help-block">头像将显示在手机客户端</span></small>
+                            <small><span class="help-block" style="color:#A94442">图片格式必须为：jpg或png</span></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.nick.$dirty && createUserForm.nick.$invalid, 'has-success': createUserForm.nick.$dirty && createUserForm.nick.$valid}">
+                    <label for="nick" class="col-sm-4 control-label">姓名</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="nick" name="nick" placeholder="昵称"
+                               ng-model="user.nick" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                          ng-class="{'has-error': createUserForm.authorTp.$dirty && createUserForm.authorTp.$invalid, 'has-success': createUserForm.authorTp.$dirty && createUserForm.authorTp.$valid}">
+                <label for="authorTp" class="col-sm-4 control-label">作者类型</label>
+
+                <div class="col-sm-5">
+                    <select class="form-control" required ng-model="user.authorTpStr" id="authorTp" name="authorTp" ng-options="s.id as s.name for s in authorTypes">
+                        <option value="">请选择类型</option>
+                    </select>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">分类</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: -6px;width:144px;height:44px;">
+                            <select class="form-control" required ng-model="user.category" ng-options="s.id as s.name for s in category">
+                                <option value="">请选择类型</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.career.$dirty && createUserForm.career.$invalid, 'has-success': createUserForm.career.$dirty && createUserForm.career.$valid}">
+                    <label for="career" class="col-sm-4 control-label">职业</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="career" name="career" placeholder="职业"
+                               ng-model="user.career" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.mobile.$dirty && createUserForm.mobile.$invalid, 'has-success': createUserForm.mobile.$dirty && createUserForm.mobile.$valid}">
+                    <label for="mobile" class="col-sm-4 control-label">手机号</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="11位手机号码" type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号"
+                               ng-model="user.mobile" required ng-pattern="/^((13|15|17|18)[0-9]{9})|(145)[0-9]{8}$/">
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.password.$dirty && createUserForm.password.$invalid, 'has-success': createUserForm.password.$dirty && createUserForm.password.$valid}">
+                    <label for="password" class="col-sm-4 control-label">密码</label>
+
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="密码"
+                               ng-model="user.password" required>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.confirmPassword.$dirty && createUserForm.confirmPassword.$invalid,
+                     'has-success': createUserForm.confirmPassword.$dirty && createUserForm.confirmPassword.$valid}">
+                    <label for="confirmPassword" class="col-sm-4 control-label">确认密码</label>
+
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="确认密码"
+                               ng-model="user.confirmPassword" required>
+                    </div>
+                    <div style="margin-top: 8px" ng-show="(createUserForm.password.$dirty || createUserForm.confirmPassword.$dirty) && user.password != user.confirmPassword">
+                        <p class="text-danger">两次输入必须一致</p>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.description.$dirty && createUserForm.description.$invalid, 'has-success': createUserForm.description.$dirty && createUserForm.description.$valid}">
+                    <label for="description" class="col-sm-4 control-label">简介</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="description" name="description" placeholder="简介"
+                               ng-model="user.desc" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gzh" class="col-sm-4 control-label">微信公众号</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="微信公众号" type="text" class="form-control" id="gzh" name="gzh" placeholder="微信公众号"
+                               ng-model="user.weixin" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="weibo" class="col-sm-4 control-label">微博账号</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="微博账号" type="text" class="form-control" id="weibo" name="weibo" placeholder="微博账号"
+                               ng-model="user.weibo" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bank" class="col-sm-4 control-label">收款银行</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="收款银行" type="text" class="form-control" id="bank" name="bank" placeholder="收款银行"
+                               ng-model="user.bank" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bankBranch" class="col-sm-4 control-label">开户行</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="开户行" type="text" class="form-control" id="bankBranch" name="bankBranch" placeholder="开户行"
+                               ng-model="user.bankBranch" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bankAccount" class="col-sm-4 control-label">收款人</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="收款人" type="text" class="form-control" id="bankAccount" name="bankAccount" placeholder="收款人"
+                               ng-model="user.bankAccount" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bankCard" class="col-sm-4 control-label">银行卡号</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="银行卡号" type="text" class="form-control" id="bankCard" name="bankCard" placeholder="银行卡号"
+                               ng-model="user.bankCard" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-5">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                            保存
+                        </button>
+                        <button class="btn btn-warning" type="button" ng-click="cancel()">
+                            <i class="fa " ng-class="{'fa-check': !saving, 'fa-spinner fa-spin': saving}"></i>
+                            取消
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

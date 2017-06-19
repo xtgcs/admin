@@ -1,0 +1,40 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改评论</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.signature.$dirty && createUserForm.signature.$invalid, 'has-success': createUserForm.signature.$dirty && createUserForm.signature.$valid}">
+                    <label class="col-sm-4 control-label">用户评论</label>
+
+                    <div class="col-sm-8">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="cmt.txt" onbeforesave="save('txt', $data)">{{ cmt.txt || '点击编辑' }}</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group" ng-if="cmt.imgResource.length > 0">
+                    <label class="col-sm-4 control-label">评论图片</label>
+
+                    <div class="col-sm-8">
+                        <div ng-repeat="m in cmt.imgResource" style="margin-top: 8px">
+                            <img ng-src="{{m.url}}" alt="" style="width:100px;"/><a href="" ng-click="delImg($index)">删除</a>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

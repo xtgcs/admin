@@ -1,0 +1,98 @@
+
+<div style="">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">姓名</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.name" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">性别</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.gender" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">年龄</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.age" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">手机号</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.mobile" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">邮箱</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.email" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">常驻城市</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.city" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">职业</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.career" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">任职机构</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.company" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">职务</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.job" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">擅长领域</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="application.skills" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">个人简介</label>
+                <div class="col-sm-5">
+                    <p>
+                        {{application.introduction}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">照片</label>
+                <div class="col-sm-5">
+                    <img ng-src="{{application.photo.url}}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-offset-3 col-md-5">
+                    <button class="btn btn-warning" ng-click="ok()">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

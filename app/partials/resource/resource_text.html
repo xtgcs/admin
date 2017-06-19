@@ -1,0 +1,16 @@
+<div sortable-item-handle style="border-top-width: 0;width:475px;min-height:87px;">
+    <table class="table list">
+        <tr>
+            <td style="width:400px;text-align:left;position:relative;padding-top:15px;">
+                <div ta-bind ng-model="resource.txt" style="border:none;width:355px;overflow:hidden;text-overflow:ellipsis;word-break: break-all;"></div>
+                <span class="label label-danger" style="position:absolute;left:-1px;top:-2px;">文本</span>
+            </td>
+            <td style="width:43px;">
+                <a data-no-drag class="btn btn-primary btn-xs" ng-click="editResource(resource)" style="margin-top: 22px;">编辑</a>
+            </td>
+            <td style="width:43px;" data-no-drag>
+                <a data-no-drag class="btn btn-danger btn-xs" ng-click="removeResource(resource)" style="margin-top: 22px;">移除</a>
+            </td>
+        </tr>
+    </table>
+</div>

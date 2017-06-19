@@ -1,0 +1,55 @@
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="modal-header">
+        <h5 class="modal-title">物件规格</h5>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">规格</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           ng-model="currentItem.size"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">价格</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="number" class="form-control"
+                           ng-model="currentItem.price"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">数量</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="number" class="form-control"
+                           ng-model="currentItem.quantity"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">颜色</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           ng-model="currentItem.color"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="form.$valid && ok()">保存</button>
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+</form>

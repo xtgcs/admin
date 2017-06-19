@@ -1,0 +1,28 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改敏感词</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+
+                <div class="form-group"
+                     ng-class="{'has-error': createUserForm.signature.$dirty && createUserForm.signature.$invalid, 'has-success': createUserForm.signature.$dirty && createUserForm.signature.$valid}">
+                    <label class="col-sm-4 control-label">敏感词</label>
+
+                    <div class="col-sm-8">
+                        <div style="margin-top: 6px">
+                            <a href="" editable-text="sensitive.name" onbeforesave="save('name', $data)">{{ sensitive.name || '点击编辑' }}</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,236 @@
+<div class="container-fluid bg">
+    <div  class="navigation">
+        <img src="img/logo_nav.png" style="height: 50px;margin-top: 20px;margin-left: 30px">
+    </div>
+    <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <!--<li><a ng-show="loading||transfering"><i class="fa fa-spinner fa-spin fa-lg"></i></a></li>-->
+            <li>
+                <i class="editorIcon"></i>
+                <!--<img src="img/message.png" style="width: 20px;margin-top: 1px;">-->
+            </li>
+            <li class="vertical"></li>
+            <li class="dropdown" id="kid_user">
+                <span class="dropdown-toggle" id="editor" style="font-size: 16px;" data-toggle="dropdown">
+                    &nbsp;&nbsp;&nbsp;{{me.nick}}</span>
+                <ul class="dropdown-menu" role="menu" style="padding: 0;width: 80px;min-width: 50px !important;margin-right: -25px;">
+                    <li class="editorHover"><a style="padding: 10px" class="editor" ui-sref="home.setting">帐户管理</a></li>
+                    <!--<li class="divider"></li>-->
+                    <li class="editorHover"><a style="padding: 10px" ng-click="logout()" class="editor">退出</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="margin-top: 52px">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked" style="border-right: 1px #ddd solid;padding-right: 5px;width: 190px;margin-left: -40px;">
+            <!--
+            <li ng-if="me.tp == 1" ui-sref-active="active">
+                <a ui-sref="home.msg" style="margin-top: 0px !important;">系统消息</a>
+            </li>-->
+
+            <!--文章管理-->
+            <li ng-if="me.tp == 2">
+                <h4>文章管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.article">全部文章</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.deletedArticles">已删除文章列表</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.articleComment">文章评论管理</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.sensitiveArticleComment">敏感文章评论列表</span></a>
+            </li>
+
+            <!--活动管理-->
+            <li ng-if="me.tp == 1 || me.tp == 2">
+                <h4>活动管理</h4>
+            </li>
+            <!--<li ng-if="me.tp == 1 || me.tp == 2" ui-sref-active="active">-->
+                <!--<a ui-sref="home.activityBill">活动统计</a>-->
+            <!--</li>-->
+            <li ng-if="me.tp == 1 || me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.activity">全部活动</a>
+            </li>
+            <li ng-if="me.tp == 1" ui-sref-active="active">
+                <a ui-sref="home.activityVerify">验证入场码</a>
+            </li>
+            <li ng-if="me.tp == 1 || me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.deletedActivities">已删除活动列表</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.activityComment">活动评论管理</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.sensitiveActivityComment">敏感活动评论列表</span></a>
+            </li>
+            <!--
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.activityHint">活动温馨提示</span></a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.recommendActivity">推荐活动</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+            <a ui-sref="home.actCategory">活动类型管理</a>
+            </li>-->
+
+            <!--推荐位管理-->
+            <li ng-if="me.tp == 2">
+                <h4>Banner及首页推荐</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.banner">Banner列表</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.recommended">推荐位列表</a>
+            </li>
+            <!--开屏管理-->
+            <li ng-if="me.tp == 2">
+                <h4>开屏广告管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.openscreen">开屏广告编辑</a>
+            </li>
+            <!--栏目管理-->
+            <li ng-if="me.tp == 2">
+                <h4>栏目管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.column">松果课堂</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.columnFree">松果专栏</a>
+            </li>
+
+            <!--V2.1之后去掉
+            <li ng-if="me.tp == 2">
+                <h4>专题管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.topic">全部专题</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.deletedTopics">已删除专题列表</a>
+            </li>-->
+
+            <!--连线管理-->
+            <li ng-if="me.tp == 1 || me.tp == 2">
+                <h4>连线管理</h4>
+            </li>
+            <li ng-if="me.tp == 1 || me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.liveBill">连线统计</a>
+            </li>
+            <li ng-if="me.tp == 1 || me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.live">全部连线</a>
+            </li>
+            <li ng-if="me.tp == 1 || me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.deletedLives">已删除连线列表</a>
+            </li>
+
+            <!--物件管理-->
+            <li ng-if="me.tp == 2">
+                <h4>物件管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.goods">全部物件</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.deletedGoods">已删除物件列表</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.goodsHint">物件温馨提示</span></a>
+            </li>
+
+            <!--订单管理-->
+            <li ng-if="me.tp == 2">
+                <h4>订单管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.order">全部订单</a>
+            </li>
+
+            <!--财务管理-->
+            <li ng-if="me.tp == 2">
+                <h4>财务管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.financeStat">财务统计</a>
+            </li>
+            <!--<li ng-if="me.tp == 2" ui-sref-active="active">-->
+            <!--<a ui-sref="home.financeDetail">财务明细</a>-->
+            <!--</li>-->
+
+            <!--用户管理-->
+            <li ng-if="me.tp == 2">
+                <h4>用户管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.user">用户列表</a>
+            </li>
+
+            <!--作者管理-->
+            <li ng-if="me.tp == 2">
+                <h4>作者管理</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.author">作者列表</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.recommendAuthor">推荐作者</a>
+            </li>
+            <!--<li ng-if="me.tp == 2" ui-sref-active="active">-->
+            <!--<a ui-sref="home.authorBlack">作者黑名单</a>-->
+            <!--</li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.application">达人申请</a>
+            </li>-->
+
+            <!--编辑管理-->
+            <li ng-if="me.tp == 3">
+                <h4>编辑管理</h4>
+            </li>
+            <li ng-if="me.tp == 3" ui-sref-active="active">
+                <a ui-sref="home.editor">编辑列表</a>
+            </li>
+            <li ng-if="me.tp == 3" ui-sref-active="active">
+                <a ui-sref="home.editorBlack">编辑黑名单</a>
+            </li>
+
+            <!--设置-->
+            <li ng-if="me.tp == 2">
+                <h4>设置</h4>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.message">系统消息</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.sensitive">敏感词管理</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.category">分类管理</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.feedback">用户反馈</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.ad">广告设置</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.resource">资源列表</a>
+            </li>
+            <li ng-if="me.tp == 2" ui-sref-active="active">
+                <a ui-sref="home.about">关于三联</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <div id="delete_success" style="width: 100%;background-color: #edf4ed;color: #5f8c61;text-align: center;height: 35px;line-height: 35px;margin-bottom: 15px;display: none">删除成功</div>
+        <div ui-view class="row"></div>
+    </div>
+</div>

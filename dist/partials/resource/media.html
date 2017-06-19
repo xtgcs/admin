@@ -1,0 +1,63 @@
+<div>
+    <input type="hidden" id="resource-id" value="{{resource.id}}">
+    <input type="hidden" id="resource-type" value="{{resource.tp}}">
+    <input type="hidden" id="resource-gid" value="{{resource.gid}}">
+
+    <div ng-if="resource.tp == 0" style="margin-top: 2px;position:relative;">
+        <div>
+            <img style="height: 300px;" ng-src="{{resource.url}}">
+        </div>
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">图片</span>
+    </div>
+    <div ng-if="resource.tp == 1" style="margin-top: 2px;position:relative;">
+        <img style="height: 300px;" ng-src="{{resource.poster}}" popover="{{resource.name}}" popover-trigger="mouseenter">
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">视频</span>
+    </div>
+    <!--<div>-->
+        <!--<video ng-if="resource.tp == 1" style="width: 100%" type="video/mp4"-->
+               <!--ng-src="{{resource.url | trusted}}"-->
+               <!--poster="{{resource.poster}}"-->
+               <!--controls="controls">-->
+            <!--您的浏览器不支持 video 标签。-->
+        <!--</video>-->
+        <!--<span class="label label-danger" style="position:absolute;left:10px;top:10px;">视频</span>-->
+        <!--&lt;!&ndash;<audio ng-if="tp==3" width="100%" type="audio/mp3"&ndash;&gt;-->
+        <!--&lt;!&ndash;src="{{url | trusted}}"&ndash;&gt;-->
+        <!--&lt;!&ndash;controls="controls">&ndash;&gt;-->
+        <!--&lt;!&ndash;您的浏览器不支持 audio 标签。&ndash;&gt;-->
+        <!--&lt;!&ndash;</audio>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="label label-danger" style="position:absolute;left:10px;top:10px;">视频</span>&ndash;&gt;-->
+
+    <!--</div>-->
+    <div ng-if="resource.tp == 3" style="margin-top: 2px;position:relative; border: 1px solid #999999;">
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">音频</span>
+        <p style="margin-top: 20px;">
+            <img src="img/music.png">
+            <span style="width: 200px; height: 67px;" popover="{{resource.name}}" popover-trigger="mouseenter">{{resource.name}}</span>
+        </p>
+    </div>
+    <div ng-if="resource.tp == 4" style="margin-top: 2px;position:relative; border: 1px solid darkgray; border-radius: 5px;height:50px;">
+        <div>
+            <span style="position:relative;left:60px;top:10px;">{{resource.goods.name}}</span>
+        </div>
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">物件</span>
+    </div>
+    <div ng-if="resource.tp == 8" style="margin-top: 2px;position:relative; border: 1px solid darkgray; border-radius: 5px;height:50px;">
+        <div>
+            <span style="position:relative;left:60px;top:10px;">{{resource.lives.title}}</span>
+        </div>
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">连线</span>
+    </div>
+    <div ng-if="resource.tp == 6" style="margin-top: 2px;position:relative; border: 1px solid darkgray; border-radius: 5px;height:50px;">
+        <div>
+            <span style="position:relative;left:60px;top:10px;">{{resource.articles.title}}</span>
+        </div>
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">文章</span>
+    </div>
+    <div ng-if="resource.tp == 7" style="margin-top: 2px;position:relative; border: 1px solid darkgray; border-radius: 5px;height:50px;">
+        <div>
+            <span style="position:relative;left:60px;top:10px;">{{resource.activities.name}}</span>
+        </div>
+        <span class="label label-danger" style="position:absolute;left:10px;top:10px;">活动</span>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">创建关键词</h3>
+        </div>
+        <div class="panel-body">
+            <form name="form" class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">图标</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: 6px">
+                            <input type="file" nv-file-select uploader="iconUploader" accept="image/jpeg,image/x-png"/>
+                            <small><span class="help-block">图标将在手机客户端订阅关键词时显示</span></small>
+                            <small><span class="help-block" style="color:#A94442">图片格式必须为：jpg或png</span></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.name.$dirty && form.name.$invalid, 'has-success': form.name.$dirty && form.name.$valid}">
+                    <label for="name" class="col-sm-3 control-label">名称</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="name" name="name" placeholder="名称"
+                               ng-model="keyword.name" required ng-pattern="/^[\u4e00-\u9fa5_a-zA-Z0-9]+$/">
+                    </div>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.desc.$dirty && form.desc.$invalid, 'has-success': form.desc.$dirty && form.desc.$valid}">
+                    <label for="desc" class="col-sm-3 control-label">描述</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="描述" type="text" class="form-control" id="desc" name="desc" placeholder="描述"
+                               ng-model="keyword.desc" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">类型</label>
+
+                    <div class="col-sm-5">
+                        <div style="margin-top: -6px">
+                            <div class="radio">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="keyword.category" value=0>明星
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="keyword.category" value=1>新闻事件
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="save(keyword)">
+                <i class="fa fa-check"></i>
+                保存
+            </button>
+            <button class="btn btn-warning" ng-click="cancel()">
+                <i class="fa " ng-class="{'icon-remove': !saving, 'fa-spinner fa-spin': saving}"></i>
+                取消
+            </button>
+        </div>
+    </div>
+</div>

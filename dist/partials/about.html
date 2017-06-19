@@ -1,0 +1,27 @@
+<div class="col-md-12">
+    <div class="panel panel-default" style="min-height:400px;height:auto;overflow: hidden;padding-bottom:50px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">关于三联</h3>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="form-group"
+             ng-class="{'has-error': createUserForm.nick.$dirty && createUserForm.nick.$invalid, 'has-success': createUserForm.nick.$dirty && createUserForm.nick.$valid}">
+
+            <label for="nick" class="col-sm-2 col-sm-offset-2 control-label" style="margin-top:10px;">显示内容</label>
+
+            <div class="col-sm-5">
+                <a href="#" editable-textarea="data.txt" e-rows="10" e-cols="47" onbeforesave="save('about', $data)">
+                    <pre>{{ data.txt || 'no description' }}</pre>
+                </a>
+
+                <p class="text-success">还能输入{{500 - data.txt.length}}字</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>

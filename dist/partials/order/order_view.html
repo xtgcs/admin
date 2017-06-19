@@ -1,0 +1,100 @@
+<style>
+    body {
+        font: normal 100% Helvetica, Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    small {
+        font-size: 0.875em;
+    }
+
+    img {
+        width: 100%;
+        max-width: 100%;
+    }
+</style>
+
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form name="form" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">类型</label>
+                    <div class="col-sm-5">
+                        <span>{{order.type | orderType}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">物品名</label>
+                    <div class="col-sm-5">
+                        <span>{{order.type==0?order.goods.name:order.activity.name}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">价格</label>
+                    <div class="col-sm-5">
+                        <span>{{order.price | currency:"￥"}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">数量</label>
+                    <div class="col-sm-5">
+                        <span>{{order.quantity}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">姓名</label>
+                    <div class="col-sm-5">
+                        <span>{{order.name}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">手机号</label>
+                    <div class="col-sm-5">
+                        <span>{{order.mobile}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="order.type==0">
+                    <label class="col-sm-3 control-label">地址</label>
+                    <div class="col-sm-5">
+                        <span>{{order.address}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="order.type==1">
+                    <label class="col-sm-3 control-label">年龄</label>
+                    <div class="col-sm-5">
+                        <span>{{order.age}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="order.type==1">
+                    <label class="col-sm-3 control-label">性别</label>
+                    <div class="col-sm-5">
+                        <span>{{order.gender}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">状态</label>
+                    <div class="col-sm-5">
+                        <span>{{order.status | orderStatus}}</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">关闭</button>
+        </div>
+    </div>
+</div>

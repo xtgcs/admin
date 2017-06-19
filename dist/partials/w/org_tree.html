@@ -1,0 +1,31 @@
+<div ui-tree-handle ng-if="item.tp != 1">
+    <a class="btn btn-xs" data-nodrag ng-click="tryToggle(this)">
+        <span class="fa" ng-class="{'fa-plus': collapsed, 'fa-minus': !collapsed}"></span>
+    </a>
+    {{item.name}}
+    <a class="pull-right btn btn-primary btn-xs" data-nodrag
+       ng-click="edit(this, (me.isAdmin || me.orgs.indexOf($parentNodeScope.$modelValue.id) > -1))" style="margin-right: 8px;"
+       ng-if="me.isAdmin || me.orgs.indexOf($modelValue.id) > -1">
+        <span class="fa fa-edit"> 编辑</span>
+    </a>
+  <span style="font-weight: lighter; margin-left: 10px;">
+    <small>{{item.memo || item.title}}</small>
+  </span>
+</div>
+<div ui-tree-handle ng-if="item.tp == 1">
+    <a class="btn btn-xs" data-nodrag>
+        <span class="fa fa-user"></span>
+    </a>
+    <input type="checkbox"
+           ng-checked="uids.indexOf(item.id + '.' + $parentNodeScope.$modelValue.id) > -1"
+           ng-click="toggleSelection(item.id + '.' + $parentNodeScope.$modelValue.id)"
+           ng-if="me.isAdmin || me.orgs.indexOf($parentNodeScope.$modelValue.id) > -1">
+    {{item.name}}
+  <span style="font-weight: lighter; margin-left: 10px;">
+    <small>{{item.memo || item.title}}</small>
+  </span>
+</div>
+<ol ui-tree-nodes="options" ng-model="item.children" ng-class="{hidden: collapsed}">
+    <li ng-repeat="item in item.children" ui-tree-node data-collapsed="true" ng-include="'partials/w/org_tree.html'">
+    </li>
+</ol>

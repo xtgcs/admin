@@ -1,0 +1,193 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/*m-title*/
+.m-title{
+    margin: 20px 15px 15px 15px;
+}
+.m-title .main {
+    border-bottom: 1px #808080 solid;
+}
+
+.m-title .other{
+    border-bottom: 1px #808080 solid;
+}
+
+/* setting */
+.setting .form-horizontal {
+    margin-bottom: 50px;
+}
+/*list*/
+.list th, .list td {
+    text-align: center;
+}
+.list th.text-left, .list td.text-left {
+    text-align: left;
+}
+
+/*summary*/
+.app-key .row {
+    padding: 8px;
+    margin: 10px 0;
+}
+
+form.config p{
+    margin-top: 6px;
+}
+
+form.config i{
+    margin-left: 6px;
+}
+
+form.config .btn-sm{
+    margin-top: 3px;
+}
+
+/* push */
+.ex-input {
+ padding: 1px;
+}
+
+.dv-ex a{
+    margin-top: 4px;
+}
+
+.push .open-tp .radio{
+    margin: 5px 0;
+}
+
+/*login*/
+.dv-login {
+    margin: 20px;
+
+}
+
+/* org */
+.org-tree ol{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.org-tree li{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.xe-row{
+    padding-bottom: 20px;
+}
+
+.action-item{
+    margin-bottom: 15px;
+}
+.popover{
+    word-wrap: break-word;
+    word-break: normal;
+}
+.editable-checklist label {
+  display: block;
+}
+.me{
+    color:red;
+}
+.scale{
+    transform: scale(1);
+}
+.scale:hover{
+    transform: scale(1.5);
+}
+/*修复textAngular与form-control冲突*/
+.ta-scroll-window {
+    height:300px;
+    padding:0;
+}
+
+.large-editor .ta-editor.ta-html, .large-editor .ta-scroll-window.form-control {
+    height: 500px
+}
+
+.large-editor .ta-scroll-window > .ta-bind {
+    min-height: 500px;
+}
+
+.ta-scroll-window h6 {
+    color: #aaaaaa;
+}
+
+/*.mini-editor .ta-editor.ta-html, .mini-editor .ta-scroll-window.form-control {*/
+    /*height: 150px*/
+/*}*/
+
+/*.mini-editor .ta-scroll-window > .ta-bind {*/
+    /*min-height: 150px;*/
+/*}*/
+.btn-group{
+    margin-bottom: 5px;
+}
+.ta-toolbar {
+    margin-bottom: 5px;
+}
+
+.results{
+    width: 93.8%;
+    position: absolute;
+    top:35px;
+    z-index: 1000;
+    background: #fff;
+}
+.results ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-height: 150px;
+    overflow: scroll;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin-top: -4px;
+}
+.results ul li{
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+}
+.results ul li:hover{
+    background: #c9c9c9;
+    cursor: pointer;
+}
+.results ul li span{
+    width: 90%;
+    height: 40px;
+}
+.results ul li img{
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,51 @@
+<div class="col-md-12">
+
+    <div style="padding-top:40px;">
+        <div style="width: 100%;">
+            <h3 style="display: inline-block;display: inline-block;border-left: 4px #fc5135 solid;padding-left: 8px;color:rgb(151,141,140);">连线-明细</h3>
+            <div style="display: inline-block; margin-left: 50px;color: #aeaeae;">结算周期 : 双周结</div>
+            <div style="display: inline-block; margin-left: 50px;color: #aeaeae;">基准日 : 5号</div>
+            <div style="display: inline-block; margin-left: 50px;">
+                <span ng-if="me.tp==1">账号 : {{me.bank}} 尾号{{bankCardSuffix}}</span></h4>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th class="text-center" ng-if="me.tp==2" style="width: 200px;">生活家</th>
+                <th  class="text-center" style="width: 180px;">连线名称</th>
+                <th class="text-center" style="width: 150px;">活动时间</th>
+                <th class="text-center" style="width: 80px;">单价</th>
+                <th class="text-center" style="width: 80px;">已报名</th>
+                <th class="text-center" style="width: 90px;">收入</th>
+                <th class="text-center" style="width: 100px;">状态</th>
+                <th class="text-center" ng-if="me.tp==2" style="min-width:100px;">操作</th>
+            </tr>
+            <tr ng-repeat="o in lives.data">
+                <td class="text-left" ng-if="me.tp==2">
+                            <span style="border:none;display:block;width:200px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" popover="{{o.user.nick}}" popover-trigger="mouseenter"
+                                  class="">{{o.user.nick}}</span>
+                </td>
+                <td class="text-left">
+                            <span style="border:none;display:block; width:250px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" popover="{{o.title}}" popover-trigger="mouseenter"
+                                  class="">{{o.title}}</span>
+                </td>
+                <td><div>{{o._start_date}}</div></td>
+                <td><div>{{o.price ? o.price: '0.00' | currency:'￥'}}</div></td>
+                <td><div>{{o.numAttendees + "/" + o.maxAttendees}}</div></td>
+                <td><div>{{o.income ? o.income: '0.00' | currency:'￥'}}</div></td>
+                <td  ng-class="{0:'state-push',1:'state-pushed',2:'state-danger'}[o.billStatus]">{{o.billStatus | billStatus}}</td>
+                <td ng-if="me.tp==2">
+                    <a href="javascript:" ng-if="me.tp==2" ng-disabled="o.billStatus==1" ng-click="updateStatus($index)">确定打款</a>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <pagination
+                    total-items="lives.total" ng-model="grid.page"
+                    items-per-page="lives.size" class="pagination-sm" boundary-links="true"
+                    max-size="12" rotate="true"
+                    previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页">
+            </pagination>
+        </div>
+    </div>
+</div>

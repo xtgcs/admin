@@ -1,0 +1,218 @@
+<div style="">
+
+    <div class="panel-body">
+        <!--<form name="form" class="form-horizontal" role="form" ng-submit="form.$valid && update()" novalidate>-->
+        <form name="form" class="form-horizontal" role="form"  novalidate>
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.title.$dirty && form.title.$invalid, 'has-success': form.title.$dirty && form.title.$valid}">
+                <label for="title" class="col-sm-2 control-label">标题</label>
+
+                <div class="col-sm-5">
+                    <input tooltip="中英文字符" type="text" class="form-control" id="title" name="title" placeholder="标题"
+                           ng-model="article.title" required maxlength="50"><span class="text-success">还能输入{{50 - article.title.length}}字</span>
+                </div>
+            </div>
+
+            <div ng-if="me.tp != 1" class="form-group">
+                <label class=" col-sm-2 control-label">作者</label>
+
+                <div class="col-sm-5"  style="position: relative;z-index:10000">
+                    <input  type="text"  class="form-control"
+                            ng-model="name.author_name"  ng-keyup="myKeyup()" placeholder="输入作者名称" required>
+                    <div class="results" ng-show="results">
+                        <ul>
+                            <li ng-repeat="author in authors" ng-click="getAuthor($index)" >
+                                <img class="" ng-src="{{author.icon}}" alt="">
+                                <span class="nick" ng-model="author.nick">{{author.nick}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="margin-top: 7px;" ng-show="noauthor">
+                    <span style="color: red">没有该作者！</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">栏目</label>
+
+                <div class="col-sm-5">
+                    <div style="margin-top: -6px">
+                        <select class="form-control"  ng-model="article.columns" ng-options="s.id as s.name for s in columns">
+                            <option value="">请选择栏目</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">文章分类</label>
+
+                <div class="col-sm-5">
+                    <div style="margin-top: -6px">
+                        <select class="form-control" required ng-model="article.category" ng-options="s.id as s.name for s in category">
+                            <option value="">请选择分类</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">文章摘要</label>
+
+                <div class="col-sm-5" >
+                    <div>
+                        <div id="editor" class="mini-editor" text-angular ng-required ta-max-text="140" name="desc"
+                             ta-toolbar="[['undo','redo'],['clear']]"
+                             placeholder="140字以内" ng-model="article.desc"></div>
+                        <span class="text-success" ng-show="form.desc.$valid">{{article.desc | editorFilter:140}}</span>
+                        <span class="text-danger" ng-show="form.desc.$invalid">已超过字数限制！</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="tags" class="col-sm-2 control-label">文章标签</label>
+
+                <div class="col-sm-5">
+                    <input tooltip="中英文字符" type="text" class="form-control" id="tags" name="tags" placeholder="标签"
+                           ng-model="article.tags" maxlength="50"><span class="text-danger">多个标签请用逗号(,)分隔</span>
+                </div>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<label class=" col-sm-2 control-label">发布方式</label>-->
+
+                <!--<div class="col-sm-2">-->
+                    <!--<div style="margin-top: -6px">-->
+                        <!--<div class="checkbox">-->
+                            <!--<label>-->
+                                <!--<input type="checkbox" ng-checked="someProperty"  ng-model="someProperty">-->
+                                <!--定时发布-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group" ng-show="someProperty">-->
+                <!--&lt;!&ndash;<label class="col-sm-2 control-label">发布时间</label>&ndash;&gt;-->
+                <!--<div class="col-sm-5 col-sm-offset-2">-->
+                    <!--<p class="input-group">-->
+                        <!--<input type="text" class="form-control"-->
+                               <!--datepicker-popup={{dateFormat}}-->
+                               <!--datepicker-localdate-->
+                               <!--ng-model="publishDate.date"-->
+                               <!--is-open="publishDate.opened"-->
+                               <!--ng-required="true"-->
+                               <!--clear-text="清空"-->
+                               <!--current-text="今天"-->
+                               <!--close-text="关闭"/>-->
+                                <!--<span class="input-group-btn">-->
+                                    <!--<button type="button" class="btn btn-default date_icon" ng-click="openPublishDatePicker($event)"></button>-->
+                                <!--</span>-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2" style="margin-top:-33px;">-->
+                    <!--<p class="input-group">-->
+                        <!--<timepicker ng-model="publishDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">专题</label>
+
+                <div class="col-sm-2">
+                    <div style="margin-top: -6px">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"   ng-checked="topic" ng-click="selectTopic()">
+                                是否是专题
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group" ng-if="isFree">
+                <label class=" col-sm-2 control-label">付费</label>
+
+                <div class="col-sm-2" >
+                    <div style="margin-top: -6px">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"  ng-checked="price" ng-click="selectPrice()">
+                                是否免费
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">推送设置</label>
+
+                <div class="col-sm-5">
+                    <div>
+                        <select class="form-control" required ng-model="article.needPushString" ng-options="s.id as s.name for s in pushSetting">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">文章内容</label>
+
+                <div class="col-sm-9">
+                    <div>
+                        <div id="content-editor" class="large-editor" ta-paste="stripFormat($html)"  text-angular ta-max-text="20000" name="editArticleContent"
+                             ta-toolbar="{{[['h1','h6'],['appInsertImage', 'appInsertVideo', 'appInsertAudio', 'appInsertGoods', 'appInsertLive','appInsertArticle','appInsertActivity'],['clear']]}}"
+                             placeholder="20000字以内" ng-model="editArticleContent"></div>
+                        <span class="text-success" ng-show="form.editArticleContent.$valid">{{editArticleContent | editorFilter:20000}}</span>
+                        <span class="text-danger" ng-show="form.editArticleContent.$invalid">已超过字数限制！</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" col-sm-2 control-label">文章头图</label>
+
+                <div class="col-sm-6">
+                    <div>
+                        <div ng-model="previewImg" style="width:150px;">
+                            <div ng-repeat="resource in previewImg" style="width:150px;">
+                                <div ng-include="'partials/resource/topImg_item.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="previewImg.length>0" ng-click="selectTopImage()">
+                        选择头图
+                    </button>
+                    <span style="color:red">说明：文章头图显示在文章详情页中</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-5">
+                    <button class="btn btn-default" style="border: 1px solid !important;" ng-disabled="uploading || form.$invalid" ng-click="form.$valid && update(false)">
+                        <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                        保存
+                    </button>
+                    <!--<button class="btn btn-default" style="border: 1px solid !important;" ng-disabled="uploading || form.$invalid" ng-click="form.$valid && update(true)">-->
+                        <!--<i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>-->
+                        <!--发布-->
+                    <!--</button>-->
+                    <!--<button class="btn btn-default" style="border: 1px solid !important;" ng-click="updatePreview(false)">预览</button>-->
+                    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+        </form>
+        <input type="hidden" value="{{address}}" id="edit_address"/>
+        <input type="hidden" value="{{article.geo.coordinates.longitude}}" id="longitude"/>
+        <input type="hidden" value="{{article.geo.coordinates.latitude}}" id="latitude"/>
+        <input type="hidden" value="{{article.geo.city.name}}" id="city"/>
+    </div>
+
+</div>

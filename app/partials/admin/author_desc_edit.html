@@ -1,0 +1,37 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">编辑达人介绍</h3>
+        </div>
+        <div class="panel-body">
+            <form name="createUserForm" class="form-horizontal" role="form" novalidate>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">达人介绍</label>
+
+                    <div class="col-sm-10">
+                        <div style="margin-top: -6px">
+                            <div id="content-editor" class="large-editor" ta-paste="stripFormat($html)"  text-angular ta-max-text="20000" name="authorDescContent"
+                                 ta-toolbar="{{[['h1', 'appListItem'],['appInsertImage', 'appInsertVideo', 'appInsertAudio', 'appMediaDesc']]}}"
+                                 placeholder="5000字以内" ng-model="authorDescContent"></div>
+                            <span class="text-success" ng-show="form.authorDescContent.$valid">{{authorDescContent | editorFilter:5000}}</span>
+                            <span class="text-danger" ng-show="form.authorDescContent.$invalid">已超过字数限制！</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-5">
+                        <button class="btn btn-primary" ng-click="save()">
+                            <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                            保存
+                        </button>
+                        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<form name="form" class="form-horizontal" role="form" novalidate>
+    <div class="modal-header">
+        <h5 class="modal-title">活动场次</h5>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">场次名称</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           ng-model="currentItem.title"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">场次价格</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="number" class="form-control"
+                           ng-model="currentItem.price"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">人数限额</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="number" class="form-control"
+                           ng-model="currentItem.maxAttendees"
+                           ng-required="true"/>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">开始时间</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           datepicker-popup={{dateFormat}}
+                           ng-model="startDate.date"
+                           is-open="startDate.opened"
+                           ng-required="true"
+                           clear-text="清空"
+                           current-text="今天"
+                           close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openStartDatePicker($event)"></button>
+                                </span>
+                </p>
+            </div>
+            <div class="col-sm-3" style="margin-top:-33px;">
+                <p class="input-group">
+                    <timepicker ng-model="startDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">结束时间</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           datepicker-popup={{dateFormat}}
+                           ng-model="endDate.date"
+                           is-open="endDate.opened"
+                           ng-required="true"
+                           clear-text="清空"
+                           current-text="今天"
+                           close-text="关闭"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openEndDatePicker($event)"></button>
+                                </span>
+                </p>
+            </div>
+            <div class="col-sm-3" style="margin-top:-33px;">
+                <p class="input-group">
+                    <timepicker ng-model="endDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <label class="col-sm-2 control-label">报名截止时间</label>
+
+            <div class="col-sm-5">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           datepicker-popup={{dateFormat}}
+                           ng-model="deadlineDate.date"
+                           is-open="deadlineDate.opened"
+                           ng-required="true"
+                           clear-text="清空"
+                           current-text="今天"
+                           close-text="关闭"/>
+                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default date_icon" ng-click="openDeadlineDatePicker($event)"></button>
+                                </span>
+                </p>
+            </div>
+            <div class="col-sm-3" style="margin-top:-33px;">
+                <p class="input-group">
+                    <timepicker ng-model="deadlineDate.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="form.$valid && ok()">保存</button>
+        <button class="btn btn-warning" ng-click="cancel()">取消</button>
+    </div>
+</form>

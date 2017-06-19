@@ -1,0 +1,126 @@
+<div style="">
+
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" role="form" ng-submit="form.$valid && update()" novalidate>
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.name.$dirty && form.name.$invalid, 'has-success': form.name.$dirty && form.name.$valid}">
+                <label for="name" class="col-sm-3 control-label">物件名称</label>
+
+                <div class="col-sm-5">
+                    <input tooltip="中英文字符" type="text" class="form-control" id="name" name="name" placeholder="物件名称"
+                           ng-model="goods.name" required maxlength="20"><span class="text-success">还能输入{{20 - goods.name.length}}字</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">规格</label>
+
+                <div class="col-sm-8">
+                    <div style="margin-bottom: 10px;">
+                        <button class="btn btn-primary btn-xs" ng-click="editItem()" type="button">添加规格</button>
+                    </div>
+                    <div >
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <th>规格编号</th>
+                                <th>规格</th>
+                                <th>价格</th>
+                                <th>数量</th>
+                                <th>颜色</th>
+                                <th>操作</th>
+                            </tr>
+                            <tr ng-repeat="o in goods.items">
+                                <td>
+                                    <div style="margin-top: 6px">
+                                        {{$index + 1}}
+                                    </div>
+                                </td>
+
+                                <td class="text-eft">
+                                    <span style="border:none;width:200px;overflow: hidden;text-overflow:ellipsis;" popover="{{o.size}}" popover-trigger="mouseenter" class="btn btn-default">{{o.size}}</span>
+                                </td>
+                                <td>{{o.price}}</td>
+                                <td>{{o.quantity}}</td>
+                                <td>{{o.color}}</td>
+                                <td>
+                                    <div style="margin-top: 6px">
+                                        <button class="btn btn-primary btn-xs" ng-click="editItem($index)" type="button">编辑</button>
+                                        <button class="btn btn-danger btn-xs" ng-click="removeItem($index)" type="button">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">物件描述</label>
+
+                <div class="col-sm-6">
+
+                    <div>
+                        <div class="sortable-row" sortable="sortableOptions" ng-model="resources" style="width:475px;">
+                            <div ng-repeat="resource in resources" style="width:475px;" sortable-item>
+                                <div ng-if="!resource.txt" ng-include="'partials/resource/resource_item.html'">
+                                </div>
+                                <div ng-if="resource.txt" ng-include="'partials/resource/resource_text.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="resources.length>10" ng-click="selectResource()">
+                        添加图片
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="resources.length>10" ng-click="selectVideo()">
+                        添加视频
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-5">
+                    <small><span class="help-block" style="color:#A94442">图片格式必须为：jpg或png</span></small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">物件详情</label>
+
+                <div class="col-sm-9">
+                    <div id="content-editor" class="large-editor" ta-paste="stripFormat($html)"  text-angular ta-max-text="2000" name="editGoodsContent"
+                         ta-toolbar="{{[['h1', 'appListItem'],['appInsertImage', 'appInsertVideo']]}}"
+                         placeholder="2000字以内" ng-model="editGoodsContent"></div>
+                    <span class="text-success" ng-show="form.editGoodsContent.$valid">{{articleContent | editorFilter:2000}}</span>
+                    <span class="text-danger" ng-show="form.editGoodsContent.$invalid">已超过字数限制！</span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': form.hint.$dirty && form.hint.$invalid, 'has-success': form.hint.$dirty && form.hint.$valid}">
+                <label for="hint" class="col-sm-3 control-label">温馨提示</label>
+
+                <div class="col-sm-9">
+                    <textarea tooltip="中英文字符" type="text" class="form-control" id="hint" name="hint" placeholder="温馨提示"
+                              ng-model="goods.hint" required maxlength="500"></textarea>
+                    <span class="text-success">还能输入{{500 - goods.hint.length}}字</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-offset-3 col-md-5">
+                    <button class="btn btn-primary" ng-disabled="uploading || form.$invalid" type="submit">
+                        <i class="fa " ng-class="{'fa-check': !updating, 'fa-spinner fa-spin': updating}"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="col-md-12 setting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">创建文章分类</h3>
+        </div>
+        <div class="panel-body">
+            <form name="form" class="form-horizontal" role="form">
+
+                <div class="form-group"
+                     ng-class="{'has-error': form.name.$dirty && form.name.$invalid, 'has-success': form.name.$dirty && form.name.$valid}">
+                    <label for="name" class="col-sm-3 control-label">名称</label>
+
+                    <div class="col-sm-5">
+                        <input tooltip="中英文字符或数字" type="text" class="form-control" id="name" name="name" placeholder="名称"
+                               ng-model="category.name" required ng-pattern="/^[\u4e00-\u9fa5_a-zA-Z0-9]+$/">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="save(category)">
+                <i class="fa fa-check"></i>
+                保存
+            </button>
+            <button class="btn btn-warning" ng-click="cancel()">
+                <i class="fa " ng-class="{'icon-remove': !saving, 'fa-spinner fa-spin': saving}"></i>
+                取消
+            </button>
+        </div>
+    </div>
+</div>

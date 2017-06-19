@@ -1,0 +1,50 @@
+<div class="col-md-12">
+    <div>
+
+        <form class="navbar-form" role="search" style="padding: 0 !important;" ng-submit="verifyCode()">
+            <div class="form-group">
+                <input type="text" style="width:312px;height:40px;margin-right:20px;" placeholder="请输入松果用户提供的入场验证码进行验证" class="form-control" ng-model="code">
+                <button type="submit" class="btn btn-default" style="border: 1px solid #DDDDDD;width:80px;height:40px; ">验证</button>
+            </div>
+        </form>
+    </div>
+
+    <div style="padding-top:40px;">
+        <h3 style="border-left: 4px #fc5135 solid;padding-left: 8px">今日活动</h3>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th class="text-center" >活动名</th>
+                <th style="width: 30%;">已报名</th>
+                <th style="width: 30%;">已验证</th>
+            </tr>
+            <tr ng-repeat="o in activities">
+            <td class="text-eft">
+                            <span style="border:none;width:100%;overflow: hidden;text-overflow:ellipsis;" popover="{{o.name}}" popover-trigger="mouseenter"
+                                  class="btn btn-default">{{o.name}}</span>
+            </td>
+            <td>{{o.numAttendees + "/" + o.maxAttendees}}</td>
+            <td>{{o.numVerified + "/" + o.maxAttendees}}</td>
+        </tr>
+        </table>
+    </div>
+
+    <div style="padding-top:40px;">
+        <h3 style="border-left: 4px #fc5135 solid;padding-left: 8px"3>今日验证</h3>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th class="text-center">用户ID/昵称</th>
+                <th style="width: 30%;">验证码</th>
+                <th style="width: 30%;">状态</th>
+            </tr>
+            <tr ng-repeat="o in vcodes">
+                <td class="text-eft">
+                            <span style="border:none;width:100%;overflow: hidden;text-overflow:ellipsis;" popover="{{o.name}}" popover-trigger="mouseenter"
+                                  class="btn btn-default">{{o.user.nick}}</span>
+                </td>
+                <td>{{o.vcode}}</td>
+                <td>已验证</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
